@@ -13,7 +13,7 @@ export default function DialogInfo({ visible, position, onHide }) {
                     Progetto sviluppato da: Umberto Carolini, Flavio Olivieri e Gabriele Santangelo
                     <br></br>
                     <br></br>
-                    Link Github:
+                    Link Github: <a id="github" target="_blank" href="https://github.com/FrancescoUmberto/spottube_downloader.git">SpotTube Github</a>
                 </p>
             </Dialog>
         </div>

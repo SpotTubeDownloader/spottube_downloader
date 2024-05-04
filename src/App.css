@@ -127,3 +127,84 @@
 .p-dialog-header-close:hover {
   background-color: rgb(38, 38, 38);
 }
+
+#linkMusic {
+  width: 50vw;
+  height: 5vh;
+  border: none;
+  border-radius: 0.2rem;
+  color: whitesmoke;
+  text-decoration: none;
+  font-size: 1em;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue','Georgia', sans-serif;
+  margin: 10px;
+  text-align: center;
+  background-color: rgb(53, 53, 53);
+}
+
+#linkMusic[type=text]:focus {
+  outline: none;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2),
+              0px 10px 20px rgba(0, 0, 0, 0.15),
+              0px 15px 25px rgba(0, 0, 0, 0.1),
+              0px 20px 30px rgba(0, 0, 0, 0.05);
+  color: whitesmoke;
+}
+
+#linkMusic::placeholder {
+  color: whitesmoke;
+  font-size: 1em;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue','Georgia', sans-serif;
+  text-align: center;
+  opacity: 0.5;
+}
+
+.p-dialog-content {
+  text-align: center;
+}
+
+.p-speeddial-button  {
+  background-color: rgb(19, 19, 19);
+  color: whitesmoke;
+  border-color: whitesmoke;
+}
+
+.p-speeddial-button:hover {
+  background-color: rgb(38, 38, 38);
+  color: whitesmoke;
+  border-color: whitesmoke;
+}
+
+.p-speeddial {
+  padding-left: 29.6rem;
+  padding-top: 1rem;
+}
+
+.p-speeddial-action {
+  background-color: rgb(19, 19, 19);
+  color: whitesmoke;
+  border-color: whitesmoke;
+}
+
+.p-speeddial-action:hover {
+  background-color: rgb(38, 38, 38);
+  color: whitesmoke;
+  border-color: whitesmoke;
+}
+
+.download_audio {
+  margin-top: 2rem;
+  background-color: rgb(38, 38, 38);
+  color: whitesmoke;
+  border: none;
+  border-radius: 1.5rem;
+  width: 10rem;
+  height: 3rem;
+  font-size: 1em;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue','Georgia', sans-serif;
+}
+
+#github {
+  color: whitesmoke;
+}
+
