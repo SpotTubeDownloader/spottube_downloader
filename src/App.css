@@ -15,34 +15,44 @@
 }
 
 #login-button {
-    margin: 0.5rem;
-    padding: 1.2rem;
-    border: none;
-    background-color: rgb(16, 16, 16);
-    color: rgb(230, 230, 230);
-    font-size: 1.5rem;
-    font-weight: bold;
-    top: 40%;
-    right: 10%;
-    border-radius: 1rem !important;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2),
+  position: absolute;
+  background-color: rgb(89, 89, 89);
+  color: whitesmoke;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  padding: 1.2rem;
+  margin: 0.5rem;
+  transition: 0.5s;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2),
     0px 10px 20px rgba(0, 0, 0, 0.15),
     0px 15px 25px rgba(0, 0, 0, 0.1),
     0px 20px 30px rgba(0, 0, 0, 0.05);
-    transform: translateX(200%);
-    animation: slideIn 1s forwards;
-    position: absolute;
-    cursor: pointer;
-} 
-
-@keyframes slideIn {
-  100% {
-    transform: translateX(0%); 
- }
+  cursor: pointer;
+  top: 42vh;
+  right: 10vw;
+  animation: zoomIn 1s ease-out forwards;
 }
 
+@keyframes zoomIn {
+  from {
+     transform: scale(0);
+     opacity: 0;
+  }
+  to {
+     transform: scale(1);
+     opacity: 1;
+  }
+ }
+
 #login-button:hover {
-  transform: scale(1.05) !important;
+  background-color: rgb(0, 0, 0);
+  letter-spacing: 0.15em;
+  box-shadow: 0 0 35px rgb(38, 38, 38);
 }
 
 .Home-header {
@@ -61,10 +71,59 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 20vh;
-  top: 0;
-  left: 0;
+  width: 10vh;  
   align-items: right;
-  text-align: center;
-  background-color: rgb(231, 227, 227);
+  background-color: rgb(19, 19, 19);
+  border: none;
+}
+
+.vertical-navbar a {
+  cursor: pointer;
+  align-items: center;
+}
+
+.vertical-navbar a:hover {
+  background-color: rgb(38, 38, 38);
+}
+
+.p-menuitem-icon {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.mr-2 {
+  margin-left: 0.5rem;
+}
+
+.p-icon {
+  color: whitesmoke;
+}
+
+.p-menubar-button {
+  color: whitesmoke;
+}
+
+.p-dialog-header {
+  background-color: rgb(19, 19, 19);
+}
+
+.p-dialog-title {
+  color: whitesmoke;
+}
+
+.p-dialog-content {
+  background-color: rgb(19, 19, 19);
+}
+
+.m-0 {
+  color: whitesmoke;
+}
+
+.p-dialog-header-close:hover {
+  background-color: rgb(38, 38, 38);
 }
