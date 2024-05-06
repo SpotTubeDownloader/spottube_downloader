@@ -3,6 +3,7 @@ import { Menubar } from 'primereact/menubar';
 import DialogInfo from './DialogInfo';
 import DialogMusic from './DialogMusic';
 import DialogVideo from './DialogVideo';
+import DialogFavorites from './DialogFavorites';
 
 export default function Navbar() {
     const [dialogVisible, setDialogVisible] = useState(false);
@@ -29,6 +30,15 @@ export default function Navbar() {
             }
         }, 
         {
+            //label: 'Preferiti',
+            icon: 'pi pi-star',
+            command: () => {
+                setDialogPosition('right');
+                setDialogType('favorites');
+                setDialogVisible(true);
+            }
+        },
+        {
             //label: 'Info',
             icon: 'pi pi-info-circle',
             command: () => {
@@ -46,6 +56,7 @@ export default function Navbar() {
             <Menubar model={items} start={start} className="vertical-navbar"/>
             {dialogVisible && dialogType === 'music' && <DialogMusic visible={dialogVisible} position={dialogPosition} onHide={() => setDialogVisible(false)} />}
             {dialogVisible && dialogType === 'video' && <DialogVideo visible={dialogVisible} position={dialogPosition} onHide={() => setDialogVisible(false)} />}
+            {dialogVisible && dialogType === 'favorites' && <DialogFavorites visible={dialogVisible} position={dialogPosition} onHide={() => setDialogVisible(false)} />}
             {dialogVisible && dialogType === 'info' && <DialogInfo visible={dialogVisible} position={dialogPosition} onHide={() => setDialogVisible(false)} />}
         </div>
     )

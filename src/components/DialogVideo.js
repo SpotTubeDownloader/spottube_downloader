@@ -1,6 +1,7 @@
 import React from "react";
 import { Dialog } from 'primereact/dialog';
 import FormatButtonVideo from "./FormatButtonVideo";
+import FavoritesButton from "./FavoritesButton";
 
 export default function DialogVideo({ visible, position, onHide }) {
     
@@ -15,6 +16,7 @@ export default function DialogVideo({ visible, position, onHide }) {
                     <input type="text" id="linkMusic" placeholder="Inserisci il link Youtube"/>
                     <FormatButtonVideo />
                     <button className="download_audio">Scarica</button>
+                    <FavoritesButton />
                 </p>
             </Dialog>
         </div>

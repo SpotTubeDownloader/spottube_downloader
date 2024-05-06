@@ -176,7 +176,7 @@
 }
 
 .p-speeddial {
-  padding-left: 29.6rem;
+  padding-left: 31.3vw;
   padding-top: 1rem;
 }
 
@@ -206,5 +206,40 @@
 
 #github {
   color: whitesmoke;
+}
+
+.p-button-help {
+  color: whitesmoke;
+  margin-left: 2vw;
+}
+
+.p-button:hover {
+  background-color: rgb(38, 38, 38);
+}
+
+.p-listbox-header {
+  background-color: rgb(19, 19, 19);
+  color: whitesmoke;
+}
+
+.p-listbox-list {
+  background-color: rgb(19, 19, 19);
+  color: whitesmoke;
+}
+
+.p-listbox-item:hover {
+  background-color: rgb(38, 38, 38);
+  color: whitesmoke;
+}
+
+.p-listbox-filter {
+  background-color: rgb(19, 19, 19);
+  color: whitesmoke;
+}
+
+.p-rating {
+  color: whitesmoke;
+  padding-left: 30vw;
+  padding-top: 1rem;
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { Dialog } from 'primereact/dialog';
 import FormatButton from "./FormatButton";
+import FavoritesButton from "./FavoritesButton";
 
 export default function DialogMusic({ visible, position, onHide }) {
     
@@ -15,6 +16,7 @@ export default function DialogMusic({ visible, position, onHide }) {
                     <input type="text" id="linkMusic" placeholder="Inserisci il link Spotify/Youtube"/>
                     <FormatButton />
                     <button className="download_audio">Scarica</button>
+                    <FavoritesButton />
                 </p>
             </Dialog>
         </div>

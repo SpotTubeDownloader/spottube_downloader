@@ -1,5 +1,6 @@
 import React from "react";
 import { Dialog } from 'primereact/dialog';
+import RatingTest from "./RatingTest";
 
 export default function DialogInfo({ visible, position, onHide }) {
     
@@ -14,6 +15,12 @@ export default function DialogInfo({ visible, position, onHide }) {
                     <br></br>
                     <br></br>
                     Link Github: <a id="github" target="_blank" href="https://github.com/FrancescoUmberto/spottube_downloader.git">SpotTube Github</a>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    Valuta il nostro servizio se ti va: 
+                    <RatingTest />
                 </p>
             </Dialog>
         </div>
