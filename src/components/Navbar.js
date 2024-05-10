@@ -4,11 +4,17 @@ import DialogInfo from './DialogInfo';
 import DialogMusic from './DialogMusic';
 import DialogVideo from './DialogVideo';
 import DialogFavorites from './DialogFavorites';
+import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Navbar() {
     const [dialogVisible, setDialogVisible] = useState(false);
     const [dialogType, setDialogType] = useState(''); 
     const [dialogPosition, setDialogPosition] = useState('center');
+    const { logout } = useAuth0();
+    const navigate = useNavigate();
+
     
     const items = [
         {
@@ -47,6 +53,13 @@ export default function Navbar() {
                 setDialogVisible(true);
             }
         },
+        {
+            icon: 'pi pi-sign-out',
+            command:() => {
+                logout(); 
+                navigate('/');
+        }
+        }
     ];
 
     const start = <img alt="logo" src="/logo.png" height="100" className="mr-2"></img>;

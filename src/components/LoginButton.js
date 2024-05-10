@@ -1,13 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
 
-const LoginButton = () => {
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
 
-  return (
-    !isAuthenticated && (
-      <button id="login-button" onClick={() => loginWithRedirect()}>Accedi</button>
-    )
-  )
-};
+function LoginButton() {
+    const {loginWithPopup} = useAuth0();
 
-export default LoginButton;
+    return (   
+        <button id="login-button" onClick={() => loginWithPopup()}>Accedi</button>
+    );
+  }
+  
+  export default LoginButton;
