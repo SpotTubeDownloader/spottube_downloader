@@ -82,6 +82,7 @@
 .vertical-navbar a {
   cursor: pointer;
   align-items: center;
+  justify-content: center;
 }
 
 .vertical-navbar a:hover {
