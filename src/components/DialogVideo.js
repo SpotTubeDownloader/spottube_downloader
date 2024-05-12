@@ -4,9 +4,10 @@ import FormatButtonVideo from "./FormatButtonVideo";
 import FavoritesButton from "./FavoritesButton";
 import SelectVideoLink from "./SelectVideoLink";
 import SelectVideoName from "./SelectVideoName";
+import { Button } from "primereact/button"
 
 export default function DialogVideo({ visible, position, onHide }) {
-    
+
     return (
         <div className="card">
             <Dialog header="Download Video" visible={visible} position={position} style={{ width: '70vw' }} onHide={onHide} draggable={false} resizable={false}>
@@ -19,12 +20,19 @@ export default function DialogVideo({ visible, position, onHide }) {
                     <br></br>
                     <br></br>
                     <SelectVideoName />
-                    <FormatButtonVideo />
-                    <button className="download_audio">Scarica</button>
-                    <FavoritesButton />
+                    <div id="pulsanti">
+                        <div id="formatAndFavorites">
+                            <FormatButtonVideo /> 
+                        </div>
+                        <div id="downloadDiv">
+                            <Button className="download_audio" label="Scarica"></Button> 
+                        </div>
+                        <div id="formatAndFavorites">
+                            <FavoritesButton />
+                        </div>
+                    </div>
                 </p>
             </Dialog>
         </div>
     )
 }
-        

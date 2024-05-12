@@ -165,6 +165,29 @@
   text-align: center;
 }
 
+/*DIALOG FOOTER*/
+
+#pulsanti {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 3vh;
+}
+
+#downloadDiv{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#formatAndFavorites{
+  display: flex;
+}
+
 .p-speeddial-button  {
   background-color: rgb(19, 19, 19);
   color: whitesmoke;
@@ -177,11 +200,6 @@
   border-color: whitesmoke;
 }
 
-.p-speeddial {
-  padding-left: 31.3vw;
-  padding-top: 1rem;
-}
-
 .p-speeddial-action {
   background-color: rgb(19, 19, 19);
   color: whitesmoke;
@@ -192,19 +210,26 @@
   background-color: rgb(38, 38, 38);
   color: whitesmoke;
   border-color: whitesmoke;
+} 
+
+.p-speeddial  {
+  size: 2rem;
+}
+
+#favoritesButton{
+  width: 62px;
+  height: 62px;
 }
 
 .download_audio {
-  margin-top: 2rem;
-  position: relative;
-  margin-left: -4rem;
-  background-color: rgb(38, 38, 38);
+  background-color: rgb(19, 19, 19);
   color: whitesmoke;
-  border: none;
   border-radius: 1.5rem;
-  width: 10vw;
-  height: 5vh;
-  font-size: 1em;
+  min-width: 10vw;
+  height: 8vh;
+  padding: 1rem;
+  margin-left: 4vw;
+  border-color: whitesmoke;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue','Georgia', sans-serif;
 }
 
@@ -243,8 +268,8 @@
 
 .p-rating {
   color: whitesmoke;
-  padding-left: 30vw;
-  padding-top: 1rem;
+  justify-content: center;
+  margin-top: 2vh;
 }
 
 .p-panel-header {
@@ -260,6 +285,7 @@
 .p-panel-header-icon:hover {
   background-color: rgb(38, 38, 38);
 }
+
 
 
 

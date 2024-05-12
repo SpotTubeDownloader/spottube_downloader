@@ -1,9 +1,10 @@
 import React from "react";
 import { Dialog } from 'primereact/dialog';
-import FormatButton from "./FormatButton";
+import FormatButtonAudio from "./FormatButtonAudio";
 import FavoritesButton from "./FavoritesButton";
 import SelectMusicLink from "./SelectMusicLink";
 import SelectMusicName from "./SelectMusicName";
+import { Button } from "primereact/button"
 
 export default function DialogMusic({ visible, position, onHide }) {
     
@@ -19,9 +20,17 @@ export default function DialogMusic({ visible, position, onHide }) {
                     <br></br>
                     <br></br>
                     <SelectMusicName />
-                    <FormatButton />
-                    <button className="download_audio">Scarica</button>
-                    <FavoritesButton />
+                    <div id="pulsanti">
+                        <div id="formatAndFavorites">
+                            <FormatButtonAudio /> 
+                        </div>
+                        <div id="downloadDiv">
+                            <Button className="download_audio" label="Scarica"></Button> 
+                        </div>
+                        <div id="formatAndFavorites">
+                            <FavoritesButton />
+                        </div>
+                    </div>
                 </p>
             </Dialog>
         </div>

@@ -20,11 +20,9 @@ export default function FormatButtonVideo() {
     ];
 
     return (
-        <div className="card">
-            <div style={{ position: 'relative', height: '80px' }}>
-                <Toast ref={toast} />
-                <SpeedDial model={items} direction="right" showIcon="pi pi-file-edit" style={{ top: 'calc(50% - 2rem)', left: 0 }} />
-            </div>
+        <div class='card'>
+                <Toast ref={toast} disabled={true}/>
+                <SpeedDial model={items} direction="right" showIcon="pi pi-file-edit"/>
         </div>
     )
 }
