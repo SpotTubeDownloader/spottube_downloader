@@ -2,6 +2,8 @@ import React from "react";
 import { Dialog } from 'primereact/dialog';
 import FormatButtonVideo from "./FormatButtonVideo";
 import FavoritesButton from "./FavoritesButton";
+import SelectVideoLink from "./SelectVideoLink";
+import SelectVideoName from "./SelectVideoName";
 
 export default function DialogVideo({ visible, position, onHide }) {
     
@@ -13,7 +15,10 @@ export default function DialogVideo({ visible, position, onHide }) {
                         <br></br>
                         Seleziona il formato e premi su "Scarica"
                     </p>
-                    <input type="text" id="linkMusic" placeholder="Inserisci il link Youtube"/>
+                    <SelectVideoLink />
+                    <br></br>
+                    <br></br>
+                    <SelectVideoName />
                     <FormatButtonVideo />
                     <button className="download_audio">Scarica</button>
                     <FavoritesButton />

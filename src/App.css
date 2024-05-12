@@ -243,3 +243,19 @@
   padding-top: 1rem;
 }
 
+.p-panel-header {
+  background-color: rgb(19, 19, 19);
+  color: whitesmoke;
+}
+
+.p-panel-content {
+  background-color: rgb(19, 19, 19);
+  color: whitesmoke;
+}
+
+.p-panel-header-icon:hover {
+  background-color: rgb(38, 38, 38);
+}
+
+
+

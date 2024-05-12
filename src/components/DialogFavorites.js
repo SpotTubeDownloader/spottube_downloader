@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog } from 'primereact/dialog';
-import ListBoxMusic from './ListBoxMusic';
-import ListBoxVideo from "./ListBoxVideo";
+import FavoritesBoxMusic from "./FavoritesBoxMusic";
+import FavoritesBoxVideo from "./FavoritesBoxVideo";
 
 export default function DialogFavorites({ visible, position, onHide }) {
     
@@ -9,11 +9,10 @@ export default function DialogFavorites({ visible, position, onHide }) {
         <div className="card">
             <Dialog header="Preferiti" visible={visible} position={position} style={{ width: '70vw' }} onHide={onHide} draggable={false} resizable={false}>
                 <p className="m-0">
-                    <p>Canzoni preferite scaricate:</p>
-                    <ListBoxMusic />
+                    <FavoritesBoxMusic />
                     <br></br>
-                    <p>Video preferiti scaricati:</p>
-                    <ListBoxVideo />
+                    <br></br>
+                    <FavoritesBoxVideo />
                 </p>
             </Dialog>
         </div>
