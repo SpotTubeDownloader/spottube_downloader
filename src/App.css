@@ -12,6 +12,7 @@
   background-size: 210vh;
   background-position: top center;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 #login-button {
@@ -65,6 +66,7 @@
   background-size: 210vh;
   background-position: top center;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .vertical-navbar {
@@ -194,12 +196,14 @@
 
 .download_audio {
   margin-top: 2rem;
+  position: relative;
+  margin-left: -4rem;
   background-color: rgb(38, 38, 38);
   color: whitesmoke;
   border: none;
   border-radius: 1.5rem;
-  width: 10rem;
-  height: 3rem;
+  width: 10vw;
+  height: 5vh;
   font-size: 1em;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue','Georgia', sans-serif;
 }

@@ -8,15 +8,11 @@ function Login() {
     const navigate = useNavigate();
     console.log("user", user);  
 
-
     useEffect(() => {
         if (isAuthenticated) {
             navigate('/home');
         }
       });
-
-    
-
 
   return (
     <div className='Login'>

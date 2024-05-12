@@ -8,7 +8,6 @@ function Home() {
     const {isAuthenticated} = useAuth0();
     const navigate = useNavigate();
 
-
     useEffect(() => {
         if (!isAuthenticated) {
             navigate('/');
