@@ -12,7 +12,9 @@ root.render(
     domain="dev-tq8wvm3avqr1gqu6.us.auth0.com"
     clientId="UsgM0dqMMsp4aPKUXgtnc6U0coPxQExL"
     authorizationParams={{
-      redirect_uri: window.location.origin
+      redirect_uri: window.location.origin,
+      audience:"spottube-certificate"
+
     }}
   >
     <App />
