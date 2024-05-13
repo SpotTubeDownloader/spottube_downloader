@@ -4,6 +4,7 @@
 
 .Login-header {
   background-image: url("/public/sfondo.jpg");
+  background-color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: row;
