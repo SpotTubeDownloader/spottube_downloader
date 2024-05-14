@@ -292,6 +292,17 @@
   background-color: rgb(38, 38, 38);
 }
 
+img {
+  width: 80%;
+  height: auto;
+  border-radius: 50%;
+  margin-right: 2vw;
+}
+
+.p-menubar-start {
+  justify-content: center;
+  align-items: center;
+}
 
 
 
