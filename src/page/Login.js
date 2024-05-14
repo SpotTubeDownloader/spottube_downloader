@@ -7,11 +7,15 @@ import axios from 'axios';
 function Login() {
     const {isAuthenticated, user, getAccessTokenSilently} = useAuth0();
     const navigate = useNavigate();
-    console.log("user", user);  
     if(isAuthenticated){
         getAccessTokenSilently().then((token) => {
-            console.log(token);
-            axios.get('http://localhost:9000/protected',{
+            axios.post('http://localhost:9000/login', {
+                email: user.email,
+                name: user.name,
+                picture: user.picture,
+                nickname: user.nickname,
+                sub: user.sub
+            },{
                 headers:{
                     authorization: `Bearer ${token}`,
                 }
@@ -20,9 +24,7 @@ function Login() {
             }).catch((err) => {
                 console.log(err);
             });
-        }).catch((err) => {
-            console.log(err);
-        });
+            })
     }
 
     useEffect(() => {
