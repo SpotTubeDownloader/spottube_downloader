@@ -3,9 +3,11 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { saveAs } from 'file-saver';
+
 
 function Login() {
-    const {isAuthenticated, user, getAccessTokenSilently} = useAuth0();
+    const {isAuthenticated, user, logout,getAccessTokenSilently} = useAuth0();
     const navigate = useNavigate();
     if(isAuthenticated){
         getAccessTokenSilently().then((token) => {
@@ -22,9 +24,38 @@ function Login() {
             }).then((response) => {
                 console.log(response.data);
             }).catch((err) => {
-                console.log(err);
+                logout();
             });
-            })
+
+                axios.post("http://localhost:9000/user/saerchName",{
+                    songName: "Mille giorni di te e di me"
+                },{
+                    headers:{
+                        authorization: `Bearer ${token}`,
+                    }
+                }).then((response) => {
+                    console.log(response.data);
+                }).catch((err) => {
+                    console.log(err);
+                });
+
+                axios.post("http://localhost:9000/user/downloadSongBySongName",{
+                    songLink: "https://www.youtube.com/watch?v=WIsXSKqDdeE"
+                },{
+                    headers:{
+                        authorization: `Bearer ${token}`,
+                    }, responseType: 'blob'
+                }).then((response) => {
+                    const blob = new Blob([response.data], {type: 'audio/mpeg'});
+                    const header = response.headers;
+                    console.log(response)
+                    saveAs(blob, "Mille giorni di te e di me.mp3");
+                }).catch((err) => {
+                    console.log(err);
+                });
+            }
+            )
+
     }
 
     useEffect(() => {
