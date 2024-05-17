@@ -11,7 +11,7 @@ function Login() {
     const navigate = useNavigate();
     if(isAuthenticated){
         getAccessTokenSilently().then((token) => {
-            axios.post('http://localhost:9000/login', {
+            axios.post('http://10.33.6.112:9000/login', {
                 email: user.email,
                 name: user.name,
                 picture: user.picture,
@@ -27,7 +27,7 @@ function Login() {
                 logout();
             });
 
-                axios.post("http://localhost:9000/user/saerchName",{
+                axios.post("http://10.33.6.112:9000/user/saerchName",{
                     songName: "Mille giorni di te e di me"
                 },{
                     headers:{
@@ -42,7 +42,7 @@ function Login() {
                     console.log(err);
                 });
 
-                axios.post("http://localhost:9000/user/downloadSongBySongName",{
+                axios.post("http://10.33.6.112:9000/user/downloadSongBySongName",{
                     songLink: "https://www.youtube.com/watch?v=WIsXSKqDdeE"
                 },{
                     headers:{

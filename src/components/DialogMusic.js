@@ -1,6 +1,5 @@
 import React from "react";
 import { Dialog } from 'primereact/dialog';
-import FormatButtonAudio from "./FormatButtonAudio";
 import FavoritesButton from "./FavoritesButton";
 import SelectMusicLink from "./SelectMusicLink";
 import SelectMusicName from "./SelectMusicName";
@@ -12,22 +11,19 @@ export default function DialogMusic({ visible, position, onHide }) {
         <div className="card">
             <Dialog header="Download Musica" visible={visible} position={position} style={{ width: '70vw' }} onHide={onHide} draggable={false} resizable={false}>
                 <p className="m-0">
-                    <p> Scarica la canzone che preferisci da Spotify o da Youtube semplicemente incollando il link qui sotto.
+                    <p> Scarica la canzone che preferisci da Spotify o da Youtube semplicemente incollando il link qui sotto,
                         <br></br>
-                        Seleziona il formato e premi su "Scarica"
+                        oppure cercandola attraverso il nome
                     </p>
                     <SelectMusicLink />
                     <br></br>
                     <br></br>
                     <SelectMusicName />
                     <div id="pulsanti">
-                        <div id="formatAndFavorites">
-                            <FormatButtonAudio /> 
-                        </div>
                         <div id="downloadDiv">
                             <Button className="download_audio" label="Scarica"></Button> 
                         </div>
-                        <div id="formatAndFavorites">
+                        <div id="favorites">
                             <FavoritesButton />
                         </div>
                     </div>
@@ -36,4 +32,7 @@ export default function DialogMusic({ visible, position, onHide }) {
         </div>
     )
 }
+
+
+        
         

@@ -6,4 +6,3 @@ export const MusicService = {
         musicData = newData;
     }
 };
-

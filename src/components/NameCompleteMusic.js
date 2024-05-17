@@ -34,7 +34,7 @@ export default function NameCompleteMusic() {
                 <div className="p-clearfix" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' , width: '100%' }}>
                     <div>{item.title}</div>
                         {item.thumbnailUrl && (
-                            <img src={item.thumbnailUrl} alt={item.title} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
+                            <img id="imgmusic" src={item.thumbnailUrl} alt={item.title} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
                         )}
                 </div>
                 <div className="p-clearfix" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' , marginTop: '10px' }}>
