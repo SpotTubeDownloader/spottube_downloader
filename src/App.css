@@ -82,6 +82,7 @@
   align-items: right;
   background-color: rgb(19, 19, 19);
   border: none;
+  border-radius: 0.5rem 0rem 0rem 0.5rem;
 }
 
 .vertical-navbar a {
@@ -182,7 +183,7 @@
   display: flex;
   flex-direction: row;
   align-content: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 3vh;
 }
@@ -195,36 +196,8 @@
   flex-wrap: wrap;
 }
 
-#formatAndFavorites{
+#favorites{
   display: flex;
-}
-
-.p-speeddial-button  {
-  background-color: rgb(19, 19, 19);
-  color: whitesmoke;
-  border-color: whitesmoke;
-}
-
-.p-speeddial-button:hover {
-  background-color: rgb(38, 38, 38);
-  color: whitesmoke;
-  border-color: whitesmoke;
-}
-
-.p-speeddial-action {
-  background-color: rgb(19, 19, 19);
-  color: whitesmoke;
-  border-color: whitesmoke;
-}
-
-.p-speeddial-action:hover {
-  background-color: rgb(38, 38, 38);
-  color: whitesmoke;
-  border-color: whitesmoke;
-} 
-
-.p-speeddial  {
-  size: 2rem;
 }
 
 #favoritesButton{
@@ -347,5 +320,8 @@ img {
   border-radius: 0%;
 }
 
+#imgmusic {
+  border-radius: 50%;
+}
 
 
