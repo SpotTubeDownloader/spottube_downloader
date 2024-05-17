@@ -35,6 +35,9 @@ function Login() {
                     }
                 }).then((response) => {
                     console.log(response.data);
+                    import('../service/MusicService').then(({ MusicService }) => {
+                        MusicService.setMusicData(response.data);
+                    });
                 }).catch((err) => {
                     console.log(err);
                 });

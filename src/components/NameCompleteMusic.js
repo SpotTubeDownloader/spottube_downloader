@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AutoComplete } from "primereact/autocomplete";
-import { MusicService } from '../service/MusicService.js';
+import { MusicService } from "../service/MusicService";
 
 export default function NameCompleteMusic() {
     const [music, setMusic] = useState([]);
@@ -14,10 +14,9 @@ export default function NameCompleteMusic() {
 
             if (!event.query.trim().length) {
                 _filteredMusic = [...music];
-            }
-            else {
-                _filteredMusic = music.filter((music) => {
-                    return music.name.toLowerCase().startsWith(event.query.toLowerCase());
+            } else {
+                _filteredMusic = music.filter((item) => {
+                    return item.title.toLowerCase().includes(event.query.toLowerCase());
                 });
             }
 
@@ -31,19 +30,33 @@ export default function NameCompleteMusic() {
 
     const itemTemplate = (item) => {
         return (
-            <div className="p-clearfix" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div>{item.name}</div>
-                {item.image && (
-                    <img src={item.image} alt={item.name} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
-                )}
+            <div className="p-clearfix" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div className="p-clearfix" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' , width: '100%' }}>
+                    <div>{item.title}</div>
+                        {item.thumbnailUrl && (
+                            <img src={item.thumbnailUrl} alt={item.title} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
+                        )}
+                </div>
+                <div className="p-clearfix" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' , marginTop: '10px' }}>
+                    {item.artist}
+                    {": "}
+                    {item.link}
+                </div>
             </div>
         );
     };
 
     return (
         <div className="card flex justify-content-center">
-            <AutoComplete field="name" value={selectedMusic} placeholder="Inserisci il nome della canzone" suggestions={filteredMusic} completeMethod={search} onChange={(e) => setSelectedMusic(e.value)} itemTemplate={itemTemplate} />
+            <AutoComplete 
+                field="title" 
+                value={selectedMusic} 
+                placeholder="Inserisci il nome della canzone" 
+                suggestions={filteredMusic} 
+                completeMethod={search} 
+                onChange={(e) => setSelectedMusic(e.value)} 
+                itemTemplate={itemTemplate} 
+            />
         </div>
-    )
+    );
 }
-        
