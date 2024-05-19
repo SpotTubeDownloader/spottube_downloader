@@ -6,12 +6,15 @@ import axios from 'axios';
 import { saveAs } from 'file-saver';
 
 
+
+
 function Login() {
     const {isAuthenticated, user, logout,getAccessTokenSilently} = useAuth0();
     const navigate = useNavigate();
+
     if(isAuthenticated){
         getAccessTokenSilently().then((token) => {
-            axios.post('http://10.33.6.112:9000/login', {
+            axios.post('http://0.0.0.0:9000/login', {
                 email: user.email,
                 name: user.name,
                 picture: user.picture,
@@ -27,14 +30,14 @@ function Login() {
                 logout();
             });
 
-                axios.post("http://10.33.6.112:9000/user/saerchName",{
+                axios.post("http://0.0.0.0:9000/user/saerchName",{
                     songName: "Mille giorni di te e di me"
                 },{
                     headers:{
                         authorization: `Bearer ${token}`,
                     }
                 }).then((response) => {
-                    console.log(response.data);
+
                     import('../service/MusicService').then(({ MusicService }) => {
                         MusicService.setMusicData(response.data);
                     });
@@ -42,17 +45,18 @@ function Login() {
                     console.log(err);
                 });
 
-                axios.post("http://10.33.6.112:9000/user/downloadSongBySongName",{
-                    songLink: "https://www.youtube.com/watch?v=WIsXSKqDdeE"
+                axios.post("http://0.0.0.0:9000/user/downloadSongBySongName",{
+                    songLink: "https://www.youtube.com/watch?v=WIsXSKqDdeE",
                 },{
                     headers:{
-                        authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                        'authorization': `Bearer ${token}`,
                     }, responseType: 'blob'
                 }).then((response) => {
-                    const blob = new Blob([response.data], {type: 'audio/mpeg'});
-                    const header = response.headers;
-                    console.log(response)
-                    saveAs(blob, "Mille giorni di te e di me.mp3");
+                    const songName = response.headers['songname'];
+                    const blob = new Blob([response.data], { type: 'audio/mpeg' });
+                    saveAs(blob, `${songName}.mp3`);
+
                 }).catch((err) => {
                     console.log(err);
                 });
