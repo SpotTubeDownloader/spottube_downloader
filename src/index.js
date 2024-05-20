@@ -9,11 +9,11 @@ import { Auth0Provider } from '@auth0/auth0-react';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Auth0Provider
-    domain="dev-tq8wvm3avqr1gqu6.us.auth0.com"
-    clientId="UsgM0dqMMsp4aPKUXgtnc6U0coPxQExL"
+    domain={process.env.REACT_APP_DOMAIN}
+    clientId={process.env.REACT_APP_CLIENT_ID}
     authorizationParams={{
       redirect_uri: window.location.origin,
-      audience:"spottube-certificate"
+      audience: process.env.REACT_APP_AUDIENCE
     }}
   >
     <App />
