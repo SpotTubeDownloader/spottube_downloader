@@ -238,6 +238,7 @@
 .p-listbox-list {
   background-color: rgb(19, 19, 19);
   color: whitesmoke;
+  display: block;
 }
 
 .p-listbox-item:hover {
