@@ -7,7 +7,7 @@ export default function DialogFavorites({ visible, position, onHide }) {
     
     return (
         <div className="card">
-            <Dialog header="Preferiti" visible={visible} position={position} style={{ width: '70vw' }} onHide={onHide} draggable={false} resizable={false}>
+            <Dialog header="Preferiti" visible={visible} position={position} style={{ width: '70vw' }} onHide={onHide} draggable={false} resizable={false} maximizable>
                 <p className="m-0">
                     <FavoritesBoxMusic />
                     <br></br>

@@ -9,7 +9,7 @@ export default function DialogVideo({ visible, position, onHide }) {
 
     return (
         <div className="card">
-            <Dialog header="Download Video" visible={visible} position={position} style={{ width: '70vw' }} onHide={onHide} draggable={false} resizable={false}>
+            <Dialog header="Download Video" visible={visible} position={position} style={{ width: '70vw' }} onHide={onHide} draggable={false} resizable={false} maximizable>
                 <p className="m-0">
                     <p> Scarica il video che preferisci da Youtube semplicemente incollando il link qui sotto,
                         <br></br>
