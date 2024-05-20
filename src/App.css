@@ -325,4 +325,66 @@ img {
   border-radius: 50%;
 }
 
+#imgHistory {
+  border-radius: 2%;
+  width: 15vw;
+  height: 18vh;
+  padding-top: 1vh;
+}
+
+#boxHistory {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+  flex-wrap: wrap;
+  height: 20vh;
+  background-color: rgb(19, 19, 19);
+}
+
+#boxtitlelink {
+  padding-top: 2vh;
+  text-align: left;
+}
+
+.p-datascroller-content {
+  background-color: rgb(19, 19, 19);
+}
+
+#titleHistory {
+  color: whitesmoke;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+a {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+#buttonHistory {
+  background-color: rgb(19, 19, 19);
+  color: whitesmoke;
+  border: none;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue','Georgia', sans-serif;
+}
+
+#buttonHistory:hover {
+  background-color: rgb(38, 38, 38);
+}
+
+#boxButtonHistory {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.p-dialog-header-maximize:hover{
+  background-color: rgb(38, 38, 38);
+}
+
+
+
 

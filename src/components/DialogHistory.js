@@ -13,8 +13,8 @@ export default function DialogHistory({ visible, position, onHide, history }) {
         style={{ width: "70vw" }}
         onHide={onHide}
         draggable={false}
-        maximizable
         resizable={false}
+        maximizable
       >
         <ListBoxHistory history={history}/>
       </Dialog>

@@ -2,8 +2,8 @@ import React from "react";
 import { DataScroller } from 'primereact/datascroller';
 import { Button } from 'primereact/button';
 
-export default function ListBoxHistory({history}) {
-    console.log(history);
+export default function ListBoxVideoFavorites({favoritesVideo}) {
+    console.log(favoritesVideo);
 
     const songsTemplate = (data) => {
         return (
@@ -30,8 +30,9 @@ export default function ListBoxHistory({history}) {
 
     return (
         <div className="card">
-            <DataScroller value={history} itemTemplate={songsTemplate} rows={10} inline scrollHeight="500px"/>
+            <DataScroller value={favoritesVideo} itemTemplate={songsTemplate} rows={10} inline scrollHeight="500px"/>
         </div>
     )
 }
+        
         
