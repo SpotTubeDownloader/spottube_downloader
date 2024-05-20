@@ -2,22 +2,29 @@ import Navbar from '../components/Navbar';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
+import { useState } from 'react';
+
+
 
 function Home() {
-
-    const {isAuthenticated} = useAuth0();
+    const [token, setToken] = useState('');
+    const {isAuthenticated, getAccessTokenSilently} = useAuth0();
     const navigate = useNavigate();
 
     useEffect(() => {
         if (!isAuthenticated) {
             navigate('/');
+        }else{
+          getAccessTokenSilently().then((token) => {
+            setToken(token);
+          });
         }
       });
 
     return ( 
         <div className="Home">
           <header className="Home-header">
-            <Navbar />
+            <Navbar token={token}/>
           </header>
         </div> 
       );

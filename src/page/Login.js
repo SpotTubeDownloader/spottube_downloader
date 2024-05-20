@@ -7,14 +7,13 @@ import { saveAs } from 'file-saver';
 
 
 
-
 function Login() {
+    const api_url = process.env.REACT_APP_API_URL;
     const {isAuthenticated, user, logout,getAccessTokenSilently} = useAuth0();
     const navigate = useNavigate();
-
     if(isAuthenticated){
         getAccessTokenSilently().then((token) => {
-            axios.post('http://localhost:9000/login', {
+            axios.post(`${api_url}/login`, {
                 email: user.email,
                 name: user.name,
                 picture: user.picture,
@@ -30,7 +29,7 @@ function Login() {
                 logout();
             });
 
-                axios.post("http://localhost:9000/user/saerchName",{
+                axios.post(`${api_url}/user/saerchName`,{
                     songName: "Mille giorni di te e di me"
                 },{
                     headers:{
@@ -45,7 +44,7 @@ function Login() {
                     console.log(err);
                 });
 
-                axios.post("http://localhost:9000/user/downloadSongBySongName",{
+                axios.post(`${api_url}/user/downloadSongBySongName`,{
                     songLink: "https://www.youtube.com/watch?v=WIsXSKqDdeE",
                     sub: user.sub
                 },{
