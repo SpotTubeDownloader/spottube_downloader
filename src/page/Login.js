@@ -47,7 +47,7 @@ function Login() {
 
                 axios.post("http://0.0.0.0:9000/user/downloadSongBySongName",{
                     songLink: "https://www.youtube.com/watch?v=WIsXSKqDdeE",
-                    subUser: user.sub
+                    sub: user.sub
                 },{
                     headers:{
                         'Content-Type': 'application/json',
