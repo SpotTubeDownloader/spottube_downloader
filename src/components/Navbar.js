@@ -6,6 +6,7 @@ import DialogVideo from './DialogVideo';
 import DialogFavorites from './DialogFavorites';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from 'react-router-dom';
+import DialogHistory from './DialogHistory';
 
 
 export default function Navbar() {
@@ -45,6 +46,15 @@ export default function Navbar() {
             }
         },
         {
+            //label: 'Cronologia',
+            icon: 'pi pi-history',
+            command: () => {
+                setDialogPosition('right');
+                setDialogType('history');
+                setDialogVisible(true);
+            }
+        },
+        {
             //label: 'Info',
             icon: 'pi pi-info-circle',
             command: () => {
@@ -70,6 +80,7 @@ export default function Navbar() {
             {dialogVisible && dialogType === 'music' && <DialogMusic visible={dialogVisible} position={dialogPosition} onHide={() => setDialogVisible(false)} />}
             {dialogVisible && dialogType === 'video' && <DialogVideo visible={dialogVisible} position={dialogPosition} onHide={() => setDialogVisible(false)} />}
             {dialogVisible && dialogType === 'favorites' && <DialogFavorites visible={dialogVisible} position={dialogPosition} onHide={() => setDialogVisible(false)} />}
+            {dialogVisible && dialogType === 'history' && <DialogHistory visible={dialogVisible} position={dialogPosition} onHide={() => setDialogVisible(false)} />}
             {dialogVisible && dialogType === 'info' && <DialogInfo visible={dialogVisible} position={dialogPosition} onHide={() => setDialogVisible(false)} />}
         </div>
     )
