@@ -3,7 +3,7 @@ import { ListBox } from 'primereact/listbox';
 
 export default function ListBoxHistory() {
     const [selectedHistory, setSelectedHistory] = useState(null);
-    const musics = [
+    const history = [
         
     ];
 
