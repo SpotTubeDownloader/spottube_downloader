@@ -12,6 +12,7 @@ import { getHistory } from "../service/HistoryService";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function Navbar({ token }) {
+    console.log("[Navbar] token: ", token)
   const [dialogVisible, setDialogVisible] = useState(false);
   const [dialogType, setDialogType] = useState("");
   const [dialogPosition, setDialogPosition] = useState("center");

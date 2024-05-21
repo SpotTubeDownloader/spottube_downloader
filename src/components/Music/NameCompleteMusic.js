@@ -33,8 +33,8 @@ export default function NameCompleteMusic() {
             <div className="p-clearfix" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <div className="p-clearfix" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' , width: '100%' }}>
                     <div>{item.title}</div>
-                        {item.thumbnailUrl && (
-                            <img id="imgmusic" src={item.thumbnailUrl} alt={item.title} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
+                        {item.thumbnail && (
+                            <img id="imgmusic" src={item.thumbnail} alt={item.title} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
                         )}
                 </div>
                 <div className="p-clearfix" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' , marginTop: '10px' }}>
@@ -95,8 +95,8 @@ export default function NameCompleteMusic() {
 //             <div className="p-clearfix" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 //                 <div className="p-clearfix" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' , width: '100%' }}>
 //                     <div>{item.title}</div>
-//                         {item.thumbnailUrl && (
-//                             <img id="imgmusic" src={item.thumbnailUrl} alt={item.title} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
+//                         {item.thumbnail && (
+//                             <img id="imgmusic" src={item.thumbnail} alt={item.title} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
 //                         )}
 //                 </div>
 //                 <div className="p-clearfix" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' , marginTop: '10px' }}>
