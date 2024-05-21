@@ -10,10 +10,9 @@ export default function SearchLabel({callbackButton, buttonIcon, token}) {
     
     return (
         <div className="search">
-            <FloatLabel>
                 <InputText id="element" value={value} onChange={(e) => setValue(e.target.value)} />
-            </FloatLabel>
-            <Button icon={icon} rounded outlined severity="success" aria-label="Search" onClick={() => callbackButton(token, value)} />
+                <Button icon={icon} rounded outlined severity="success" aria-label="Search" onClick={() => callbackButton(token, value)} />
+            
         </div>
     )
 }
