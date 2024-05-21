@@ -8,7 +8,7 @@ export default function SearchLabel({callbackButton, buttonIcon, token}) {
     
     return (
         <div className="search">
-                <InputText id="element" placeholder="Inserisci il nome della canzone" value={value} onChange={(e) => setValue(e.target.value)} />
+                <InputText id="element" value={value} onChange={(e) => setValue(e.target.value)} />
                 <Button id="searchButton" icon={icon} rounded outlined severity="success" aria-label="Search" onClick={() => callbackButton(token, value)} /> 
         </div>
     )
