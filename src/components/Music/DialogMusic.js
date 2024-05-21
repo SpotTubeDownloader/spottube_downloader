@@ -3,10 +3,9 @@ import { Dialog } from 'primereact/dialog';
 import FavoritesButton from "../Favorites/FavoritesButton";
 import SelectMusicLink from "./SelectMusicLink";
 import SelectMusicName from "./SelectMusicName";
-import { Button } from "primereact/button"
 
-export default function DialogMusic({ visible, position, onHide }) {
-    
+export default function DialogMusic({ visible, position, onHide, token }) {
+    console.log("[DialogMusic] token: ", token)
     return (
         <div className="card">
             <Dialog header="Download Musica" visible={visible} position={position} style={{ width: '70vw' }} onHide={onHide} draggable={false} resizable={false} maximizable>
@@ -18,11 +17,8 @@ export default function DialogMusic({ visible, position, onHide }) {
                     <SelectMusicLink />
                     <br></br>
                     <br></br>
-                    <SelectMusicName />
+                    <SelectMusicName token = {token}/>
                     <div id="pulsanti">
-                        <div id="downloadDiv">
-                            <Button className="download_audio" label="Scarica"></Button> 
-                        </div>
                         <div id="favorites">
                             <FavoritesButton />
                         </div>

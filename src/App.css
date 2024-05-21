@@ -327,8 +327,8 @@ img {
 
 #imgHistory {
   border-radius: 2%;
-  width: 15vw;
-  height: 18vh;
+  min-width: 15vw;
+  min-height: 18vh;
   padding-top: 1vh;
 }
 
