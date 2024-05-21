@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AutoComplete } from "primereact/autocomplete";
-import { MusicService } from "../service/MusicService";
+import { MusicService } from "../../service/MusicService.js";
 
 export default function NameCompleteMusic() {
     const [music, setMusic] = useState([]);

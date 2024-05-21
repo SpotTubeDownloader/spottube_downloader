@@ -30,7 +30,7 @@ export default function ListBoxHistory({history}) {
 
     return (
         <div className="card">
-            <DataScroller value={history} itemTemplate={songsTemplate} rows={10} inline scrollHeight="500px"/>
+            <DataScroller value={history} itemTemplate={songsTemplate} rows={10} inline scrollHeight="500px" emptyMessage="Nessun elemento trovato"/>
         </div>
     )
 }

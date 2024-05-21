@@ -1,6 +1,6 @@
 import React from "react";
 import { Dialog } from 'primereact/dialog';
-import FavoritesButton from "./FavoritesButton";
+import FavoritesButton from "../Favorites/FavoritesButton";
 import SelectMusicLink from "./SelectMusicLink";
 import SelectMusicName from "./SelectMusicName";
 import { Button } from "primereact/button"

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Menubar } from "primereact/menubar";
-import DialogInfo from "./DialogInfo";
-import DialogMusic from "./DialogMusic";
-import DialogVideo from "./DialogVideo";
-import DialogFavorites from "./DialogFavorites";
+import DialogInfo from "./Info/DialogInfo.js";
+import DialogMusic from "./Music/DialogMusic";
+import DialogVideo from "./Video/DialogVideo";
+import DialogFavorites from "./Favorites/DialogFavorites";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-import DialogHistory from "./DialogHistory";
+import DialogHistory from "./History/DialogHistory";
 import { getHistory } from "../service/HistoryService";
 //take api url from .env file
 const apiUrl = process.env.REACT_APP_API_URL;

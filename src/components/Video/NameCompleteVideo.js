@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AutoComplete } from "primereact/autocomplete";
-import { VideoService } from "../service/VideoService";
+import { VideoService } from "../../service/VideoService.js";
 
 export default function NameCompleteVideo() {
     const [video, setVideo] = useState([]);
