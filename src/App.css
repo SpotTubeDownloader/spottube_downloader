@@ -265,6 +265,7 @@
 .p-panel-content {
   background-color: rgb(19, 19, 19);
   color: whitesmoke;
+  height: auto;
 }
 
 .p-panel-header-icon:hover {
@@ -327,8 +328,8 @@ img {
 
 #imgHistory {
   border-radius: 2%;
-  min-width: 15vw;
-  min-height: 18vh;
+  width: 15vw;
+  height: 18vh;
   padding-top: 1vh;
 }
 
@@ -388,6 +389,16 @@ a {
 
 .p-dialog-header-maximize:hover{
   background-color: rgb(38, 38, 38);
+}
+
+.p-inputtext {
+  background-color: rgb(38, 38, 38);
+  border: none;
+}
+
+#search {
+  display: flex;
+  flex-direction: row;
 }
 
 
