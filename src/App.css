@@ -179,15 +179,6 @@
 
 /*DIALOG FOOTER*/
 
-#pulsanti {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 3vh;
-}
-
 #downloadDiv{
   display: flex;
   flex-direction: row;
@@ -198,9 +189,14 @@
 
 #favorites{
   display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 #favoritesButton{
+  margin-top: 2vh;
   width: 62px;
   height: 62px;
 }
@@ -394,11 +390,26 @@ a {
 .p-inputtext {
   background-color: rgb(38, 38, 38);
   border: none;
+  width: 50vw;
+  height: 6vh;
+  color: whitesmoke;
+  text-align: center;
+}
+
+.p-inputtext::placeholder {
+  color: whitesmoke;
+  opacity: 0.5;
+  text-align: center;
 }
 
 #search {
   display: flex;
   flex-direction: row;
+}
+
+#searchButton {
+  color: whitesmoke;
+  margin-left: 2vw;
 }
 
 
