@@ -30,7 +30,7 @@ export default function ListBoxVideoFavorites({favoritesVideo}) {
 
     return (
         <div className="card">
-            <DataScroller value={favoritesVideo} itemTemplate={songsTemplate} rows={10} inline scrollHeight="500px"/>
+            <DataScroller value={favoritesVideo} itemTemplate={songsTemplate} rows={10} inline scrollHeight="500px" emptyMessage="Nessun elemento trovato"/>
         </div>
     )
 }

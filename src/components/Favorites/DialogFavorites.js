@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog } from 'primereact/dialog';
-import FavoritesBoxMusic from "./FavoritesBoxMusic";
-import FavoritesBoxVideo from "./FavoritesBoxVideo";
+import FavoritesBoxMusic from "./MusicFavorites/FavoritesBoxMusic";
+import FavoritesBoxVideo from "./VideoFavorites/FavoritesBoxVideo";
 
 export default function DialogFavorites({ visible, position, onHide }) {
     
