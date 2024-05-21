@@ -19,14 +19,9 @@ export default function DialogVideo({ visible, position, onHide }) {
                     <br></br>
                     <br></br>
                     <SelectVideoName />
-                    <div id="pulsanti">
-                        <div id="downloadDiv">
-                            <Button className="download_audio" label="Scarica"></Button> 
-                        </div>
                         <div id="favorites">
                             <FavoritesButton />
                         </div>
-                    </div>
                 </p>
             </Dialog>
         </div>

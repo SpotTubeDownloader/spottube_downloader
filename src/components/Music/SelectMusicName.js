@@ -22,7 +22,7 @@ export default function SelectMusicName({ token }) {
     }
     return (
         <Panel header="Scarica attraverso il nome" toggleable collapsed={true}>
-            {!visible && <SearchLabel token={token} labelText={"Inserisci il nome della canzone"} buttonIcon={"search"} callbackButton={callbackButton} />}
+            {!visible && <SearchLabel token={token} buttonIcon={"search"} callbackButton={callbackButton} />}
             {visible && songs !== null && <SongScroller songs={songs} />}
         </Panel>
     )

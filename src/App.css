@@ -396,12 +396,6 @@ a {
   text-align: center;
 }
 
-.p-inputtext::placeholder {
-  color: whitesmoke;
-  opacity: 0.5;
-  text-align: center;
-}
-
 #search {
   display: flex;
   flex-direction: row;
