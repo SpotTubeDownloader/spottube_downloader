@@ -368,47 +368,6 @@ img {
   font-weight: 800;
 
 }
-/* 
-
-
-
-#boxHistory:hover {
-  background-color: rgb(38, 38, 38);
-  scale: 1.01;
-}
-
-#boxtitlelink {
-  padding-top: 2vh;
-  text-align: left;
-} */
-
-/* #boxButtonHistory {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-#boxButtonDeleteHistory{
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-}
-
-#boxButton{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-} */
-
-/* .p-datascroller-content {
-  background-color: rgb(19, 19, 19);
-} */
-
-/* #titleHistory {
-  color: whitesmoke;
-  font-size: 1em;
-  font-weight: bold;
-} */
 
 a {
   color: whitesmoke;
