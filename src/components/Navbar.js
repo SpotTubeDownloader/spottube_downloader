@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Menubar } from "primereact/menubar";
 import DialogInfo from "./Info/DialogInfo.js";
 import DialogMusic from "./Music/DialogMusic";
-import DialogVideo from "./Video/DialogVideo";
 import DialogFavorites from "./Favorites/DialogFavorites";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
@@ -27,15 +26,6 @@ export default function Navbar({ token }) {
       command: () => {
         setDialogPosition("right");
         setDialogType("music");
-        setDialogVisible(true);
-      },
-    },
-    {
-      //label: 'Video',
-      icon: "pi pi-video",
-      command: () => {
-        setDialogPosition("right");
-        setDialogType("video");
         setDialogVisible(true);
       },
     },
@@ -100,13 +90,6 @@ export default function Navbar({ token }) {
           position={dialogPosition}
           onHide={() => setDialogVisible(false)}
           token={token}
-        />
-      )}
-      {dialogVisible && dialogType === "video" && (
-        <DialogVideo
-          visible={dialogVisible}
-          position={dialogPosition}
-          onHide={() => setDialogVisible(false)}
         />
       )}
       {dialogVisible && dialogType === "favorites" && (
