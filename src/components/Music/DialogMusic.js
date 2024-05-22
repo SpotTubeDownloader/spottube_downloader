@@ -14,7 +14,7 @@ export default function DialogMusic({ visible, position, onHide, token }) {
                         <br></br>
                         oppure cercandola attraverso il nome
                     </p>
-                    <SelectMusicLink />
+                    <SelectMusicLink token = {token} />
                     <br></br>
                     <br></br>
                     <SelectMusicName token = {token}/>

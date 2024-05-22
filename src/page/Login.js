@@ -28,40 +28,8 @@ function Login() {
             }).catch((err) => {
                 logout();
             });
-
-                axios.post(`${api_url}/user/saerchName`,{
-                    songName: "Mille giorni di te e di me"
-                },{
-                    headers:{
-                        authorization: `Bearer ${token}`,
-                    }
-                }).then((response) => {
-
-                    import('../service/MusicService').then(({ MusicService }) => {
-                        MusicService.setMusicData(response.data);
-                    });
-                }).catch((err) => {
-                    console.log(err);
-                });
-
-                axios.post(`${api_url}/user/downloadSongBySongName`,{
-                    songLink: "https://www.youtube.com/watch?v=WIsXSKqDdeE",
-                    sub: user.sub
-                },{
-                    headers:{
-                        'Content-Type': 'application/json',
-                        'authorization': `Bearer ${token}`,
-                    }, responseType: 'blob'
-                }).then((response) => {
-                    const songName = response.headers['songname'];
-                    const blob = new Blob([response.data], { type: 'audio/mpeg' });
-                    saveAs(blob, `${songName}.mp3`);
-
-                }).catch((err) => {
-                    console.log(err);
-                });
             }
-            )
+        )
 
     }
 
