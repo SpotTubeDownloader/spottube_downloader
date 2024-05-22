@@ -17,26 +17,24 @@ import SearchLabel from '../basicsComponent/SearchLabel';
 import SongScroller from '../basicsComponent/SongScroller';
 import { getSongsList } from '../../service/MusicService';
 import { useState } from 'react';
+import { downloadSongByYoutubeLink } from '../../service/MusicService';
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 
 export default function SelectMusicLink({ token }) {
+    const {user} = useAuth0();
     const [visible, setVisible] = useState(false);
     const [songs, setSongs] = useState(null);
     
     const callbackButton = (token, value) => {
-        getSongsList(token, value).then((data) => {
-            console.log(data);
-            setVisible(true);
-            setSongs(data);
-            console.log(data)
-        }).catch((error) => {
-            console.log(error);
-        });
+            downloadSongByYoutubeLink(token, user.sub ,value).then().catch((error)=>{
+                console.log(error);
+            });
     }
     return (
         <Panel header="Scarica attraverso il link" toggleable collapsed={true}>
             {!visible && <SearchLabel token={token} buttonIcon={"download"} callbackButton={callbackButton} />}
-            {visible && songs !== null && <SongScroller songs={songs} />}
         </Panel>
     )
 }

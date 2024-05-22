@@ -122,6 +122,7 @@ export default function Navbar({ token }) {
           position={dialogPosition}
           onHide={() => setDialogVisible(false)}
           history={history}
+          token={token}
         />
       )}
       {dialogVisible && dialogType === "info" && (

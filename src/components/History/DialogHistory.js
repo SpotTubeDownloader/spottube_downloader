@@ -1,8 +1,9 @@
 import React from "react";
 import { Dialog } from "primereact/dialog";
 import ListBoxHistory from "./ListBoxHistory";
+import SongScroller from "../basicsComponent/SongScroller";
 
-export default function DialogHistory({ visible, position, onHide, history }) {
+export default function DialogHistory({ visible, position, onHide, history , token}) {
     console.log(history);
   return (
     <div className="card">
@@ -16,7 +17,7 @@ export default function DialogHistory({ visible, position, onHide, history }) {
         resizable={false}
         maximizable
       >
-        <ListBoxHistory history={history}/>
+        <SongScroller songs={history} token={token}/>
       </Dialog>
     </div>
   );
