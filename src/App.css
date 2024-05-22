@@ -110,6 +110,11 @@
   align-items: center;
 }
 
+.p-menubar-start {
+  justify-content: center;
+  align-items: center;
+}
+
 .mr-2 {
   margin-left: 0.5rem;
 }
@@ -318,7 +323,7 @@ img {
   border-radius: 0%;
 } */
 
-#boxHistory{
+#boxHistory {
   display:flex;
   flex-direction: column;
   background-color: rgb(38, 38, 38);
@@ -326,45 +331,55 @@ img {
   gap:1rem;
   flex-wrap: wrap;
 }
-#imageAndInfos{
+
+#imageAndInfos {
   display:flex;
   flex-direction: row;
   width: fit-content;
   justify-content: space-around;
   align-items: center;
 }
-#titleHistory > h1{
+
+#titleHistory > h1 {
   font-size: 1rem;
   font-weight: 800;
   color: whitesmoke;
 }
-#boxButton{
+
+#boxButton {
   display:flex;
   justify-content: space-between;
   align-items: center;
 }
-#historyButtons{
+
+#historyButtons {
   width: fit-content;
 }
+
 #boxHistory:hover {
   background-color: rgb(38, 38, 38);
   scale: 1.01;
 }
-#titleHistory{
+
+#titleHistory {
   text-align: left;
 }
+
 .p-datascroller-content {
   background-color: rgb(19, 19, 19);
 }
-#imgHistoryBox{
+
+#imgHistoryBox {
   display: flex;
 }
-#imgHistoryBox img{
+
+#imgHistoryBox img {
   border-radius: 10%;
-  width: fit-content;
-  height: fit-content;
+  width: 14vw;
+  height: 17vh;
 }
-#boxButton > div > a > p{
+
+#boxButton > div > a > p {
   font-weight: 800;
 
 }
@@ -385,8 +400,6 @@ a {
   scale: 1.1;
 }
 
-
-
 .p-dialog-header-maximize:hover{
   background-color: rgb(38, 38, 38);
 }
@@ -403,11 +416,14 @@ a {
 #search {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 #searchButton {
+  margin-top: 2vh;
+  margin-left: 0.8vw;
   color: whitesmoke;
-  margin-left: 2vw;
 }
 
 
