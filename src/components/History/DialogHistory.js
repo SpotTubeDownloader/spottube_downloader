@@ -1,6 +1,5 @@
 import React from "react";
 import { Dialog } from "primereact/dialog";
-import ListBoxHistory from "./ListBoxHistory";
 import SongScroller from "../basicsComponent/SongScroller";
 
 export default function DialogHistory({ visible, position, onHide, history , token}) {
@@ -11,13 +10,13 @@ export default function DialogHistory({ visible, position, onHide, history , tok
         header="Cronologia"
         visible={visible}
         position={position}
-        style={{ width: "70vw" }}
+        style={{ width: "auto" }}
         onHide={onHide}
         draggable={false}
         resizable={false}
         maximizable
       >
-        <SongScroller songs={history} token={token}/>
+        <SongScroller songs={history} token={token} isHistory={true}/>
       </Dialog>
     </div>
   );

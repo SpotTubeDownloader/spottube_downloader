@@ -1,11 +1,19 @@
 import React from "react";
 import { DataScroller } from 'primereact/datascroller';
 import { Button } from 'primereact/button';
-import {downloadSongByYoutubeLink} from '../../service/MusicService';
+import {downloadSongByYoutubeLink, } from '../../service/MusicService';
+import {deleteElementinHistoryBySongId} from '../../service/HistoryService';
 import { useAuth0 } from '@auth0/auth0-react';
 
-export default function SongScroller({songs, token}) {
+export default function SongScroller({songs, token, isHistory=false}) {
     const {user} = useAuth0();
+    const deleteCallback = (id) =>{
+        deleteElementinHistoryBySongId(token, user.sub, id).then((data)=>{
+            songs = data;
+        }).catch((error)=>{
+            console.log(error);
+        });
+    }
 
     const songsTemplate = (data) => {
         const buttonCallback = () => {
@@ -14,24 +22,28 @@ export default function SongScroller({songs, token}) {
             });
         }
         return (
-            <div>
-                <div id="boxHistory">
-                    <img id="imgHistory" src={`${data.thumbnail}`}/>
+            <div id="boxHistory">
+                <div id="imageAndInfos">
+                    <div id="imgHistoryBox">
+                        <img id="imgHistory" src={`${data.thumbnail}`}/>
+                    </div>
+                    <div id="titleHistory">
+                        <h1>{data.title}</h1>
+                    </div>
+                </div>
+                <div id="boxButton">
+                    <div id="boxButtonHistory">
+                        <Button id="historyButtons" icon="pi pi-download" label="Scarica" severity="success" onClick={buttonCallback}></Button>
+                    </div>
                     <div>
-                        <div id="boxtitlelink">
-                            <div>
-                                <div id="titleHistory">{data.title}</div>
-                                <br></br>
-                                <div><a href={data.link} target="blank">Apri su Youtube</a></div>
-                                <br></br>
-                            </div>
-                        </div>
-                        <div id="boxButtonHistory">
-                            <Button id="buttonHistory" icon="pi pi-download" label="Scarica" onClick={buttonCallback}></Button>
-                        </div>
+                        <a href={data.link} target="blank"><p>Apri su Youtube</p></a>
+                    </div>
+                    <div id="boxButtonDeleteHistory">
+                        {!isHistory ? null : <Button id="historyButtons" icon="pi pi-trash" severity="danger" label="Elimina" onClick={() =>deleteCallback(data.id)}></Button>}
                     </div>
                 </div>
             </div>
+
         );
     };
 
