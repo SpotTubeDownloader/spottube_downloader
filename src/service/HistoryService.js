@@ -15,3 +15,17 @@ export async function getHistory(token, sub){
 
     return response.data;
 }
+
+export async function deleteElementinHistoryBySongId(token, sub, songId){
+    const response = await axios.delete(`${api_url}/user/history/deleteElementinHistoryBySongId/${sub}`,
+    {
+        songId: songId,
+        sub: sub
+    }
+    ,{
+        headers:{
+            authorization: `Bearer ${token}`,
+        }
+    });
+    return response.data;
+}
