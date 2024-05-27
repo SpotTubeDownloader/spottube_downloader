@@ -44,11 +44,11 @@ export default function Navbar({ token }) {
       command: () => {
         setDialogPosition("right");
         setDialogType("history");
-        setDialogVisible(true);
         try {
           getHistory(token, user.sub).then(data=>{
             console.log(data);
             setHistory(data);
+            setDialogVisible(true);
           }).catch(err=>{
             console.log(err);
           })
@@ -99,7 +99,7 @@ export default function Navbar({ token }) {
           onHide={() => setDialogVisible(false)}
         />
       )}
-      {dialogVisible && dialogType === "history" && (
+      {dialogVisible && dialogType === "history" &&(
         <DialogHistory
           visible={dialogVisible}
           position={dialogPosition}
