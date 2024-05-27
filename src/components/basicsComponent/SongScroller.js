@@ -7,11 +7,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { ProgressSpinner } from 'primereact/progressspinner';
 
 export default function SongScroller({songs, token, isHistory=false}) {
+    console.log(token);
     const {user} = useAuth0();
     const [loading, setLoading] = useState(false);
 
     const deleteCallback = (id) =>{
         deleteElementinHistoryBySongId(token, user.sub, id).then((data)=>{
+            console.log(data);
             songs = data;
         }).catch((error)=>{
             console.log(error);
@@ -47,7 +49,7 @@ export default function SongScroller({songs, token, isHistory=false}) {
                         <a href={data.link} target="blank"><p>Apri su Youtube</p></a>
                     </div>
                     <div id="boxButtonDeleteHistory">
-                        {!isHistory ? null : <Button id="historyButtons" icon="pi pi-trash" severity="danger" label="Elimina" onClick={() =>deleteCallback(data.id)}></Button>}
+                        {!isHistory ? null : <Button id="historyButtons" icon="pi pi-trash" severity="danger" label="Elimina" onClick={() =>deleteCallback(data.songId)}></Button>}
                     </div>
                 </div>
             </div>
