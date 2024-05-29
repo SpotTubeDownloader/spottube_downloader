@@ -1,4 +1,4 @@
-import LoginButton from '../components/LoginButton';
+import LoginButton from '../components/basicsComponent/LoginButton';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';

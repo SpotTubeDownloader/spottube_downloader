@@ -6,6 +6,8 @@ import {deleteElementinHistoryBySongId} from '../../service/HistoryService';
 import { useAuth0 } from '@auth0/auth0-react';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { getHistory } from '../../service/HistoryService';
+import { addFavorite } from '../../service/FavoriteService';
+
 
 export default function SongScroller({songs, token, isHistory=false}) {
     console.log(token);
@@ -15,14 +17,26 @@ export default function SongScroller({songs, token, isHistory=false}) {
     const [data, setData] = useState(songs);
     console.log("[Inside DataScroller]: Data ",data)
 
-    const deleteCallback = (id) =>{
-        deleteElementinHistoryBySongId(token, user.sub, id).then((data)=>{
-            console.log(data);
-            setData(data);
-        }).catch((error)=>{
+    const deleteCallback = async (id) =>{
+        setLoading(true);
+        try {
+            await deleteElementinHistoryBySongId(token, user.sub, id);
+            setData(await getHistory(token, user.sub));
+            setLoading(false);
+        } catch(error) {
             console.log(error);
-        });
+            setLoading(false);
+        }
     }
+
+    const favoriteCallback= async (link)=>{
+        try{
+            await addFavorite(token, user.sub, link);
+            console.log("Favorite added");
+        } catch(error){
+            console.log(error);
+        }
+    };
 
     const songsTemplate = (data) => {
         const buttonCallback = async () => {
@@ -38,12 +52,17 @@ export default function SongScroller({songs, token, isHistory=false}) {
                 setLoading(false);
             }
         }
+
+        
+
         return (
             <div id="boxHistory">
                 <div id="imageAndInfos">
-                    <div id="imgHistoryBox">
-                        <img id="imgHistory" src={`${data.thumbnail}`}/>
-                    </div>
+                    <a href={data.link} target="blank">
+                        <div id="imgHistoryBox">
+                            <img id="imgHistory" src={`${data.thumbnail}`}/>
+                        </div>
+                    </a>
                     <div id="titleHistory">
                         <h1>{data.title}</h1>
                     </div>
@@ -52,11 +71,11 @@ export default function SongScroller({songs, token, isHistory=false}) {
                     <div id="boxButtonHistory">
                         <Button id="historyButtons" icon="pi pi-download" label="Scarica" severity="success" onClick={buttonCallback}></Button>
                     </div>
-                    <div>
-                        <a href={data.link} target="blank"><p>Apri su Youtube</p></a>
-                    </div>
                     <div id="boxButtonDeleteHistory">
-                        {!isHistory ? null : <Button id="historyButtons" icon="pi pi-trash" severity="danger" label="Elimina" onClick={() =>deleteCallback(data.songId)}></Button>}
+                        {!isHistory ? null : <Button id="historyButtons" icon="pi pi-trash" severity="danger" label="Elimina" onClick={() => {deleteCallback(data.songId)}}></Button>}
+                    </div>
+                    <div id="favorites">
+                        <Button id="favoritesButton" icon="pi pi-star" rounded outlined severity="help" aria-label="Favorite" onClick={()=>favoriteCallback(data.link) } />       
                     </div>
                 </div>
             </div>
@@ -75,4 +94,3 @@ export default function SongScroller({songs, token, isHistory=false}) {
         </>
     )
 }
-        

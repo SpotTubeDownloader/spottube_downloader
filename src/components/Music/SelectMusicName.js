@@ -4,26 +4,44 @@ import SearchLabel from '../basicsComponent/SearchLabel';
 import SongScroller from '../basicsComponent/SongScroller';
 import { getSongsList } from '../../service/MusicService';
 import { useState } from 'react';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 
 export default function SelectMusicName({ token }) {
     const [visible, setVisible] = useState(false);
     const [songs, setSongs] = useState(null);
+    const [loading, setLoading] = useState(false);
     
-    const callbackButton = (token, value) => {
-        getSongsList(token, value).then((data) => {
-            console.log(data);
-            setVisible(true);
-            setSongs(data);
-            console.log(data)
-        }).catch((error) => {
+    const callbackButton = async (token, value) => {
+        setLoading(true);
+        try {
+            getSongsList(token, value).then((data) => {
+                console.log(data);
+                setVisible(true);
+                setSongs(data);
+                console.log(data);
+                setLoading(false);
+            }).catch((error) => {
+                console.log(error);
+                setLoading(false);
+            });
+        } catch(error) {
             console.log(error);
-        });
+            setLoading(false);
+        }
+        
     }
+
     return (
-        <Panel header="Scarica attraverso il nome" toggleable collapsed={true}>
-            {!visible && <SearchLabel token={token} buttonIcon={"search"} callbackButton={callbackButton} />}
-            {visible && songs !== null && <SongScroller songs={songs} token={token} />}
-        </Panel>
+        <>
+            {loading && <div className="spinner">
+                    <ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s" />
+                </div>
+            }
+            <Panel header="Scarica attraverso il nome" toggleable collapsed={true}>
+                {!visible && <SearchLabel token={token} buttonIcon={"search"} callbackButton={callbackButton} />}
+                {visible && songs !== null && <SongScroller songs={songs} token={token} />}
+            </Panel>
+        </>
     )
 }
