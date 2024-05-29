@@ -1,6 +1,5 @@
 import React from "react";
 import { Dialog } from 'primereact/dialog';
-import FavoritesButton from "../Favorites/FavoritesButton";
 import SelectMusicLink from "./SelectMusicLink";
 import SelectMusicName from "./SelectMusicName";
 
@@ -18,9 +17,6 @@ export default function DialogMusic({ visible, position, onHide, token }) {
                     <br></br>
                     <br></br>
                     <SelectMusicName token = {token}/>
-                        <div id="favorites">
-                            <FavoritesButton />
-                        </div>
                 </p>
             </Dialog>
         </div>

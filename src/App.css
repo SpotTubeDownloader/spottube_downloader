@@ -201,9 +201,12 @@
 }
 
 #favoritesButton{
-  margin-top: 2vh;
   width: 62px;
   height: 62px;
+}
+
+#favoritesButton:hover {
+  background-color: rgb(19, 19, 19);
 }
 
 .download_audio {
@@ -375,27 +378,18 @@ img {
   display: flex;
 }
 
+#imgHistoryBox:hover{
+  transform: scale(1.05);
+  transition: transform 0.5s;
+
+}
+
 #imgHistoryBox img {
   border-radius: 10%;
   width: 14vw;
   height: 17vh;
 }
 
-#boxButton > div > a > p {
-  font-weight: 500;
-  background: -webkit-linear-gradient(red, green);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-#boxButton > div > a > p:hover {
-  background: -webkit-linear-gradient(green, red);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transform: scale(1.1);
-  /* make the zoom smooth */
-  transition: transform 1s;
-}
 
 a {
   color: whitesmoke;
