@@ -10,7 +10,7 @@ export default function DialogHistory({ visible, position, onHide, history , tok
         header="Cronologia"
         visible={visible}
         position={position}
-        style={{ width: "auto" }}
+        style={{ width: "50vw" }}
         onHide={onHide}
         draggable={false}
         resizable={false}

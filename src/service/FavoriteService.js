@@ -27,3 +27,21 @@ export async function getFavorite(token, sub){
     });
     return response.data;
 }
+
+
+export async function deleteFavoriteBySongId(token, sub, songId){
+    console.log("[Inside deleteFavoriteBySongId]");
+    console.log(songId)
+    const response = await axios.post(`${api_url}/user/favorites/deleteFavorite`,
+    {
+        songId: songId,
+        subUser: sub
+    }
+    ,{
+        headers:{
+            authorization: `Bearer ${token}`,
+        }
+    });
+    console.log("[Inside deleteFavoriteBySongId]",response.data);
+    return response.data;
+}
