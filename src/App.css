@@ -387,7 +387,7 @@ img {
 #imgHistoryBox img {
   border-radius: 10%;
   width: 14vw;
-  height: 17vh;
+  height: 14vh;
 }
 
 
@@ -415,7 +415,7 @@ a {
 .p-inputtext {
   background-color: rgb(38, 38, 38);
   border: none;
-  width: 50vw;
+  width: 30vw;
   height: 6vh;
   color: whitesmoke;
   text-align: center;
