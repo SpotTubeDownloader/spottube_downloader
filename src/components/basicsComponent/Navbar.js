@@ -127,6 +127,7 @@ export default function Navbar({ token }) {
           visible={dialogVisible}
           position={dialogPosition}
           onHide={() => setDialogVisible(false)}
+          token={token}
         />
       )}
     </div>
