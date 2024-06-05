@@ -4,9 +4,7 @@ import { saveAs } from 'file-saver';
 const api_url = process.env.REACT_APP_API_URL;
 
 export async function getSongsList(token, songName){
-    const response = await  axios.post(`${api_url}/user/searchName`,{
-            songName: songName,
-        },{
+    const response = await  axios.get(`${api_url}/user/song/searchByName/${songName}`,{
         headers:{
             authorization: `Bearer ${token}`,
         }
@@ -18,11 +16,24 @@ export async function getSongsList(token, songName){
 }
 
 
-export async function downloadSongByYoutubeLink(token, sub, link) {
+export async function getHistory(token, userSub){
+    const response = await  axios.get(`${api_url}/user/history/getHistoryByUserSub/${userSub}`,{
+        headers:{
+            authorization: `Bearer ${token}`,
+        }
+    });
+
+    console.log("[Inside GetHistory]",response);
+
+    return response.data;
+}
+
+
+export async function downloadSongByYoutubeLink(token, userSub, link) {
     try{
-        const response = await axios.post(`${api_url}/user/downloadSongBySongName`,{
+        const response = await axios.post(`${api_url}/user/song/downloadSongByLink`,{
             songLink: link,
-            sub: sub
+            userSub: userSub
         },{
             headers:{
                 'Content-Type': 'application/json',
