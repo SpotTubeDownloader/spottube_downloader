@@ -95,7 +95,7 @@ export default function Navbar({ token }) {
 
   return (
     <div className="card">
-      <Menubar model={items} start={start} className="vertical-navbar" />
+      <Menubar model={items} start={start} />
       {dialogVisible && dialogType === "music" && (
         <DialogMusic
           visible={dialogVisible}
