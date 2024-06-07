@@ -341,9 +341,10 @@ img {
 }
 
 
-#boxHistory {
+#songScroller{
   display:flex;
   flex-direction: column;
+  flex-wrap: wrap;
   background-color: rgb(38, 38, 38);
   border-radius: 1rem;
   padding: 2rem;
@@ -360,7 +361,7 @@ img {
   align-items: center;
 }
 
-#titleHistory > h1 {
+#titleSong > h1 {
   font-size: 1rem;
   font-weight: 800;
   color: whitesmoke;
@@ -377,10 +378,10 @@ img {
   width: fit-content;
 }
 
-#titleHistory {
+#titleSong {
   text-align: left;
 }
-#titleHistory > h1 {
+#titleSong > h1 {
   font-size: 1rem;
   font-weight: 600;
   color: whitesmoke;
@@ -391,17 +392,17 @@ img {
   border-radius: 1rem;
 }
 
-#imgHistoryBox {
+#imgSongBox {
   display: flex;
 }
 
-#imgHistoryBox:hover{
+#imgSongBox:hover{
   transform: scale(1.05);
   transition: transform 0.5s;
 
 }
 
-#imgHistoryBox img {
+#imgSongBox img {
   border-radius: 10%;
   width: 14vw;
   height: 14vh;
