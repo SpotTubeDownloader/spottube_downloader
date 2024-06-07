@@ -80,7 +80,7 @@ export default function SongScroller({ songs, token, isHistory = false, isFavori
                         {isFavorite ? null : <Button 
                             id="favoritesButton" 
                             icon="pi pi-star" 
-                            style={{ color: favoriteLinks.includes(data.link) ? "yellow" : "whitesmoke" }} 
+                            style={{ color: favoriteLinks.includes(data.link) ? "yellow" : "whitesmoke"}} 
                             rounded 
                             outlined 
                             severity="help" 
