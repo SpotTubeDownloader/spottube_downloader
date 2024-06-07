@@ -6,7 +6,7 @@ export default function DialogInfo({ visible, position, onHide, token }) {
     
     return (
         <div className="card">
-            <Dialog header="Info Generali" visible={visible} position={position} style={{ width: '50vw' }} onHide={onHide} draggable={false} resizable={false} maximizable>
+            <Dialog header="Info Generali" visible={visible} position={position} style={{ width: '60vw' }} onHide={onHide} draggable={false} resizable={false} maximizable>
                 <p className="m-0">
                     Il progetto prende il nome di SpotTube. La sua funzionalità è quella di permettere il download di canzoni e/o video rispettivamente da Spotify e da Youtube.
                     <br></br>
