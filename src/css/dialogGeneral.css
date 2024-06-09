@@ -22,11 +22,6 @@
   .p-dialog-header-maximize:hover{
     background-color: rgb(38, 38, 38);
   }
-
-  .p-button-help {
-    color: whitesmoke;
-    margin-left: 2vw;
-  }
   
   .p-button:hover {
     background-color: rgb(38, 38, 38);

@@ -10,6 +10,7 @@ import { getHistory } from "../../service/HistoryService.js";
 import { getFavorite } from "../../service/FavoriteService.js";
 import "../../css/navbar.css";
 import "../../css/dialogGeneral.css";
+import '../../css/responsive.css';
 //take api url from .env file
 const apiUrl = process.env.REACT_APP_API_URL;
 

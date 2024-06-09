@@ -12,6 +12,7 @@ import {
 } from "../../service/FavoriteService";
 import "../../css/scroller.css";
 import "../../css/spinner.css";
+import '../../css/responsive.css';
 
 export default function SongScroller({
   songs,

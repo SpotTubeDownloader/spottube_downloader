@@ -3,6 +3,7 @@ import { Dialog } from 'primereact/dialog';
 import SelectMusicLink from "./SelectMusicLink";
 import SelectMusicName from "./SelectMusicName";
 import '../../css/dialogGeneral.css';
+import '../../css/responsive.css';
 
 export default function DialogMusic({ visible, position, onHide, token }) {
     console.log("[DialogMusic] token: ", token)

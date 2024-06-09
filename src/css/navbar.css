@@ -1,21 +1,3 @@
-@media screen and (max-width: 960px) {
-    .p-menubar-button {
-      display: none;
-    }
-  
-    .p-menubar-root-list {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: unset;
-      padding: unset;
-      background: inherit;
-      border: unset;
-      box-shadow: unset;
-      width: unset;
-    }
-  }
-  
   .p-menubar {
     display: flex;
     flex-direction: column;
@@ -48,17 +30,12 @@
   }
   
   .p-menu-list {
-    justify-content: center;
     align-items: center;
   }
   
   .p-menubar-start {
-    justify-content: center;
     align-items: center;
-  }
-  
-  .mr-2 {
-    margin-left: 0.5rem;
+    margin-left: 0.5vw;
   }
   
   .p-icon {
@@ -69,8 +46,4 @@
     color: whitesmoke;
   }
 
-  .p-menubar-start {
-    justify-content: center;
-    align-items: center;
-  }
   
