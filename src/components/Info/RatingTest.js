@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Rating } from "primereact/rating";
 import { getRatingByUserSub, updateRatingByUserSub } from "../../service/RatingService.js";
 import { useAuth0 } from "@auth0/auth0-react";
+import '../../css/info.css';
 
 
 export default function RatingTest({ token }) {

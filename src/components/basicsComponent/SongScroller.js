@@ -10,6 +10,8 @@ import {
   addFavorite,
   deleteFavoriteBySongId,
 } from "../../service/FavoriteService";
+import "../../css/scroller.css";
+import "../../css/spinner.css";
 
 export default function SongScroller({
   songs,
@@ -154,15 +156,6 @@ export default function SongScroller({
                 aria-label="Favorite"
                 onClick={() => favoriteCallback(data.link)}
             />
-        <Button
-          id="historyButtons"
-          icon="pi pi-trash"
-          severity="danger"
-          label="Elimina"
-          onClick={() => {
-            deleteCallback(data.songId);
-          }}
-        ></Button>
         </div>
         )}
       </div>

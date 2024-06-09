@@ -1,0 +1,33 @@
+.p-dialog-header {
+    background-color: rgb(19, 19, 19);
+  }
+  
+  .p-dialog-title {
+    color: whitesmoke;
+  }
+  
+  .p-dialog-content {
+    background-color: rgb(19, 19, 19);
+    text-align: center;
+  }
+  
+  .m-0 {
+    color: whitesmoke;
+  }
+  
+  .p-dialog-header-close:hover {
+    background-color: rgb(38, 38, 38);
+  }
+
+  .p-dialog-header-maximize:hover{
+    background-color: rgb(38, 38, 38);
+  }
+
+  .p-button-help {
+    color: whitesmoke;
+    margin-left: 2vw;
+  }
+  
+  .p-button:hover {
+    background-color: rgb(38, 38, 38);
+  }

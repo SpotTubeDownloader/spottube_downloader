@@ -1,6 +1,8 @@
 import React from "react";
 import { Dialog } from "primereact/dialog";
 import SongScroller from "../basicsComponent/SongScroller";
+import "../../css/dialogGeneral.css";
+import "../../css/scroller.css";
 
 export default function DialogHistory({ visible, position, onHide, history , token}) {
     console.log(history);

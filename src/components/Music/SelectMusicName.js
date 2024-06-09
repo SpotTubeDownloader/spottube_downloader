@@ -5,6 +5,8 @@ import SongScroller from '../basicsComponent/SongScroller';
 import { getSongsList } from '../../service/MusicService';
 import { useState } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
+import '../../css/spinner.css';
+import '../../css/scroller.css';
 
 
 export default function SelectMusicName({ token }) {

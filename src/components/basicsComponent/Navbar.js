@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import DialogHistory from "../History/DialogHistory.js";
 import { getHistory } from "../../service/HistoryService.js";
 import { getFavorite } from "../../service/FavoriteService.js";
+import "../../css/navbar.css";
+import "../../css/dialogGeneral.css";
 //take api url from .env file
 const apiUrl = process.env.REACT_APP_API_URL;
 

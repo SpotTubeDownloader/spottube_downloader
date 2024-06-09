@@ -1,0 +1,16 @@
+#favorites{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  #favoritesButton{
+    width: 62px;
+    height: 62px;
+  }
+  
+  #favoritesButton:hover {
+    background-color: rgb(19, 19, 19);
+  }

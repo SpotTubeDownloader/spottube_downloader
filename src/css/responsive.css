@@ -1,0 +1,19 @@
+@media screen and (max-width: 960px) {
+    #boxButton {
+      flex-direction: column;
+    }
+    #historyButtons {
+      margin: 0.5em;
+    }
+    #titleSong > h1{
+      font-size: 0.8rem;
+    }
+    #imgSongBox img {
+      width: 25vw;
+      height: 13vh;
+    }
+    #imageAndInfos {
+      flex-direction: column;
+    }
+  }
+  
