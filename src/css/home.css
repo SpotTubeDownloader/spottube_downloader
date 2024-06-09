@@ -1,0 +1,12 @@
+.Home-header {
+    background-image: url("/public/sfondo.jpg");
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    justify-content: right;
+    background-size: 210vh;
+    background-position: top center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }

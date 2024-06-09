@@ -1,6 +1,7 @@
 import React from "react";
 import { Dialog } from 'primereact/dialog';
 import RatingTest from "./RatingTest";
+import '../../css/info.css';
 
 export default function DialogInfo({ visible, position, onHide, token }) {
     
