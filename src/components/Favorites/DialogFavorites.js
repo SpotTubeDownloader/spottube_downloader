@@ -3,6 +3,7 @@ import { Dialog } from 'primereact/dialog';
 import SongScroller from '../basicsComponent/SongScroller';
 import '../../css/dialogGeneral.css';
 import '../../css/scroller.css';
+import '../../css/responsive.css';
 
 export default function DialogFavorites({ visible, position, onHide, token, favorite }) {
     return (
