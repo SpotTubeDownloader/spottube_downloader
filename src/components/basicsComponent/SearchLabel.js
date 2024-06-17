@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import '../../css/scroller.css';
-import '../../css/responsive.css';
+
 
 export default function SearchLabel({callbackButton, buttonIcon, token}) {
     const [value, setValue] = useState('');

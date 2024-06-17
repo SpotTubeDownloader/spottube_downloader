@@ -1,49 +1,161 @@
+@media screen and (min-width: 960px) {
   .p-menubar {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    width: 10vh;  
     align-items: center;
     background-color: rgb(19, 19, 19);
     border: none;
+    height: fit-content;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    max-width: 7vw;
+    height: 100vh;
     border-radius: 0.5rem 0rem 0rem 0.5rem;
   }
-  
-  .menubar > a {
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
+  .p-menubar-root-list {
+    display: block;
+    flex-direction: row;
+    width: fit-content;
   }
-  
-  .p-menubar a:hover {
-    background-color: rgb(38, 38, 38);
-  }
-  
-  .p-menuitem-icon {
-    margin: 0 auto;
+  .p-menuitem{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: whitesmoke;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
+    max-width: 7vw;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
   }
-  
-  .p-menu-list {
-    align-items: center;
+  .p-menuitem-text{
+    display: none;
+  }
+  .p-menuitem-link {
+    border-radius: 10px;
+    max-width: 7vw;
+    padding: 2vh 2vw;
+  }
+  .p-menuitem-link:hover {
+    background-color: rgb(38, 38, 38);
+  }
+  .p-menuitem-link:hover .p-menuitem-icon {
+    transform: scale(1.1);
+    transition: transform 0.5s;
+  }
+  .p-menuitem-icon{
+    margin-right: auto;
+    margin-left: auto;
+    color: rgb(160, 160, 160);
   }
   
   .p-menubar-start {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin-left: 0.5vw;
+    width: fit-content;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    height: fit-content;
   }
-  
-  .p-icon {
-    color: whitesmoke;
+  .mr-2 {
+    margin: auto;
   }
-  
-  .p-menubar-button {
-    color: whitesmoke;
+  .p-menuitem-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(19, 19, 19);
+  }  
+}
+
+@media screen and (max-width: 960px) {
+  .p-menubar{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 5rem;
+    justify-content: space-between;
+    background-color: rgb(19, 19, 19);
+    border: none;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0rem 0rem 0.5rem 0.5rem;
+  }
+  .p-menubar-button{
+    background-color: rgb(19, 19, 19);
+    color:rgb(160, 160, 160);
+  }
+  .p-menubar-button:hover{
+    background-color: rgb(38, 38, 38);
+  }
+  .p-menubar-root-list {
+    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+    margin-top: 2px;
+    background-color: rgb(19, 19, 19);
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .p-menuitem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .p-menuitem-link {
+    border-radius: 10px;
+    display: flex;
+  }
+  .p-menuitem:hover {
+    background-color: rgb(38, 38, 38);
+  }
+  .p-menuitem:hover .p-menuitem-link{
+    background-color: rgb(38, 38, 38);
+    border-radius: 0px;
+  }
+  .p-menuitem:hover{
+    background-color: solid rgb(38, 38, 38);
+  }
+  .p-menuitem-link:hover .p-menuitem-icon {
+    transform: scale(1.1);
+    transition: transform 0.5s;
+  } 
+  .p-menuitem-icon{
+    color: rgb(160, 160, 160);
+  }
+  .p-menuitem-text{
+    color:rgb(160, 160, 160);
+  }
+  .p-menubar-start {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-right: 2vw;
+    margin-left: 2vw;
+    height: fit-content;
+  }
+  .mr-2 {
+    margin: auto;
+    width: 75%;
+    height: 75%;
+  }
+  .p-menuitem-content{
+    width: 100%;
+    background-color: rgb(19, 19, 19);
+  }
+  #downloadByLink{
+    display: flex;
+    justify-content: center;
+  }
+  #downloadBySongName{
+    display: flex;
+    justify-content: center;
   }
 
-  
+}

@@ -6,7 +6,7 @@ import { downloadSongByYoutubeLink } from '../../service/MusicService';
 import { useAuth0 } from '@auth0/auth0-react';
 import '../../css/spinner.css';
 import '../../css/scroller.css';
-import '../../css/responsive.css';
+
 
 export default function SelectMusicLink({ token }) {
     const {user} = useAuth0();

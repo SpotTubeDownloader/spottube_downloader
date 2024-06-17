@@ -12,7 +12,6 @@ import {
 } from "../../service/FavoriteService";
 import "../../css/scroller.css";
 import "../../css/spinner.css";
-import '../../css/responsive.css';
 
 export default function SongScroller({
   songs,
@@ -81,7 +80,7 @@ export default function SongScroller({
           </div>
         </div>
         {isFavorite && (
-          <div id="boxButton" style={{justifyContent: "space-between"}}>
+          <div id="boxButton" style={{ justifyContent: "space-between" }}>
             <Button
               id="historyButtons"
               icon="pi pi-download"
@@ -101,8 +100,8 @@ export default function SongScroller({
           </div>
         )}
         {isHistory && (
-            <div id="boxButton" style={{justifyContent: "space-between"}}>
-                <Button
+          <div id="boxButtonFavorites" style={{ justifyContent: "space-between" }}>
+            <Button
               id="historyButtons"
               icon="pi pi-download"
               label="Scarica"
@@ -110,19 +109,19 @@ export default function SongScroller({
               onClick={buttonCallback}
             ></Button>
             <Button
-                    id="favoritesButton"
-                    icon="pi pi-star"
-                    style={{
-                    color: favoriteLinks.includes(data.link)
-                        ? "yellow"
-                        : "whitesmoke",
-                    }}
-                    rounded
-                    outlined
-                    severity="help"
-                    aria-label="Favorite"
-                    onClick={() => favoriteCallback(data.link)}
-                />
+              id="favoritesButton"
+              icon="pi pi-star"
+              style={{
+                color: favoriteLinks.includes(data.link)
+                  ? "yellow"
+                  : "whitesmoke",
+              }}
+              rounded
+              outlined
+              severity="help"
+              aria-label="Favorite"
+              onClick={() => favoriteCallback(data.link)}
+            />
             <Button
               id="historyButtons"
               icon="pi pi-trash"
@@ -132,32 +131,32 @@ export default function SongScroller({
                 deleteCallback(data.songId);
               }}
             ></Button>
-            </div>
+          </div>
         )}
-        {!isFavorite && !isHistory &&(
-            <div id="boxButton" style={{justifyContent: "space-between"}}>
+        {!isFavorite && !isHistory && (
+          <div id="boxButton" style={{ justifyContent: "space-between" }}>
             <Button
-          id="historyButtons"
-          icon="pi pi-download"
-          label="Scarica"
-          severity="success"
-          onClick={buttonCallback}
-        ></Button>
-        <Button
-                id="favoritesButton"
-                icon="pi pi-star"
-                style={{
+              id="historyButtons"
+              icon="pi pi-download"
+              label="Scarica"
+              severity="success"
+              onClick={buttonCallback}
+            ></Button>
+            <Button
+              id="favoritesButton"
+              icon="pi pi-star"
+              style={{
                 color: favoriteLinks.includes(data.link)
-                    ? "yellow"
-                    : "whitesmoke",
-                }}
-                rounded
-                outlined
-                severity="help"
-                aria-label="Favorite"
-                onClick={() => favoriteCallback(data.link)}
+                  ? "yellow"
+                  : "whitesmoke",
+              }}
+              rounded
+              outlined
+              severity="help"
+              aria-label="Favorite"
+              onClick={() => favoriteCallback(data.link)}
             />
-        </div>
+          </div>
         )}
       </div>
     );
