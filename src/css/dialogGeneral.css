@@ -1,28 +1,60 @@
-.p-dialog-header {
+@media screen and (min-width: 960px) {
+  .p-dialog-header {
     background-color: rgb(19, 19, 19);
   }
-  
+
   .p-dialog-title {
     color: whitesmoke;
   }
-  
+
   .p-dialog-content {
     background-color: rgb(19, 19, 19);
     text-align: center;
   }
-  
+
   .m-0 {
     color: whitesmoke;
   }
-  
+
   .p-dialog-header-close:hover {
     background-color: rgb(38, 38, 38);
   }
 
-  .p-dialog-header-maximize:hover{
+  .p-dialog-header-maximize:hover {
     background-color: rgb(38, 38, 38);
   }
-  
+
   .p-button:hover {
     background-color: rgb(38, 38, 38);
   }
+}
+@media screen and (max-width: 960px) {
+  .p-dialog-header {
+    background-color: rgb(19, 19, 19);
+  }
+
+  .p-dialog-title {
+    color: whitesmoke;
+  }
+
+  .p-dialog-content {
+    background-color: rgb(19, 19, 19);
+    text-align: center;
+  }
+
+  .m-0 {
+    color: whitesmoke;
+  }
+
+  .p-dialog-header-close:hover {
+    background-color: rgb(38, 38, 38);
+  }
+
+  .p-dialog-header-maximize:hover {
+    background-color: rgb(38, 38, 38);
+  }
+
+  .p-button:hover {
+    background-color: rgb(38, 38, 38);
+  }
+}

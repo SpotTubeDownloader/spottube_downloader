@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import '../css/home.css';
 import '../css/navbar.css';
-import '../css/responsive.css';
+
 
 
 

@@ -10,7 +10,7 @@ import { getHistory } from "../../service/HistoryService.js";
 import { getFavorite } from "../../service/FavoriteService.js";
 import "../../css/navbar.css";
 import "../../css/dialogGeneral.css";
-import '../../css/responsive.css';
+
 //take api url from .env file
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -26,19 +26,19 @@ export default function Navbar({ token }) {
 
   const items = [
     {
-      //label: 'Musica',
+      label: 'Musica',
       icon: "pi pi-headphones",
       command: () => {
-        setDialogPosition("right");
+        setDialogPosition("center");
         setDialogType("music");
         setDialogVisible(true);
       },
     },
     {
-      //label: 'Preferiti',
+      label: 'Preferiti',
       icon: "pi pi-star",
       command: () => {
-        setDialogPosition("right");
+        setDialogPosition("center");
         setDialogType("favorites");
         try{
             getFavorite(token, user.sub).then(data=>{
@@ -54,10 +54,10 @@ export default function Navbar({ token }) {
       },
     },
     {
-      //label: 'Cronologia',
+      label: 'Cronologia',
       icon: "pi pi-history",
       command: () => {
-        setDialogPosition("right");
+        setDialogPosition("center");
         setDialogType("history");
         try {
           getHistory(token, user.sub).then(data=>{
@@ -73,15 +73,16 @@ export default function Navbar({ token }) {
       },
     },
     {
-      //label: 'Info',
+      label: 'Info',
       icon: "pi pi-info-circle",
       command: () => {
-        setDialogPosition("right");
+        setDialogPosition("center");
         setDialogType("info");
         setDialogVisible(true);
       },
     },
     {
+      label: 'Logout',
       icon: "pi pi-sign-out",
       command: () => {
         logout();
