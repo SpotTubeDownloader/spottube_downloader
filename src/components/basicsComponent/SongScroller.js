@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { DataScroller } from "primereact/datascroller";
 import { Button } from "primereact/button";
-import { downloadSongByYoutubeLink } from "../../service/MusicService";
+import { downloadSongByYoutubeLink, streamSong } from "../../service/MusicService";
 import { deleteElementinHistoryBySongId } from "../../service/HistoryService";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ProgressSpinner } from "primereact/progressspinner";
@@ -71,13 +71,20 @@ export default function SongScroller({
     };
     const playSong = async (link) => {
       console.log(`${link}`);
-      downloadSongByYoutubeLink(token, user.sub, link, false).then((data) => {
-        console.log(`MAMT ${data}`);
-        setSongName(data[0]);
-        setArtist(data[1]);
-        setDuration(data[1]);
-        return data;
-      });
+      const response = await streamSong(token, link);
+      console.log(`MAMT ${response}`);
+      setSongName(decodeURIComponent(response.headers["songname"]));
+      setArtist(decodeURIComponent(response.headers["artist"]));
+      setDuration(decodeURIComponent(response.headers["duration"]));
+      setThumbnail(response.headers["thumbnail"]);
+
+      const context = new (window.AudioContext || window.webkitAudioContext)();
+      const buffer = await context.decodeAudioData(response.data);
+      const source = context.createBufferSource();
+      source.buffer = buffer;
+      source.connect(context.destination);
+      source.start(0);
+
     }
 
     return (

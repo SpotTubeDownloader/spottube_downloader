@@ -17,17 +17,19 @@ export async function getSongsList(token, songName){
     return response.data;
 }
 
+export async function streamSong(token, songLink){
+    try{
+        let link = encodeURIComponent(songLink);
+        const response = await axios.get(`${api_url}/user/song/streamSong/${link}`,{
+            headers:{
+                authorization: `Bearer ${token}`,
+            }, responseType: 'arraybuffer'
 
-export async function getHistory(token, userSub){
-    const response = await  axios.get(`${api_url}/user/history/getHistoryByUserSub/${userSub}`,{
-        headers:{
-            authorization: `Bearer ${token}`,
-        }
-    });
-
-    console.log("[Inside GetHistory]",response);
-
-    return response.data;
+        });
+        return response;
+    } catch(error){
+        throw new Error(error);
+    }
 }
 
 

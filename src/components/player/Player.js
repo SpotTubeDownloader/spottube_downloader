@@ -7,7 +7,7 @@ import { SongContext } from "../../context/SongContext";
 export default function Player() {
   const [player, setPlayer] = useState(null);
   const [playing, setPlaying] = useState(false);
-  const { songName, duration } = useContext(SongContext);
+  const { songName, duration, thumbnail, artist } = useContext(SongContext);
   console.log("[SongName]: ", songName);
   const togglePlayPause = () => {
     setPlaying(!playing);
@@ -15,7 +15,7 @@ export default function Player() {
 
 
   let url =
-    "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/34/de/45/34de4516-fdd0-3a2f-1bb5-c326a4ddd6a7/artwork.jpg/592x592bf.webp";
+    thumbnail;
   return (
     <div
       className="player-content"
@@ -28,7 +28,7 @@ export default function Player() {
           <h1>{songName}</h1>
         </div>
         <div>
-          <h3>Song Artist</h3>
+          <h3>{artist}</h3>
         </div>
       </div>
       <div className="control">
