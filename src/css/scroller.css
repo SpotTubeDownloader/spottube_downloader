@@ -200,6 +200,10 @@
     display: flex;
     justify-content: center;
   }
+  .p-component .p-button {
+    display: flex;
+    justify-content: center;
+  }
   .p-component .p-button-success:hover {
     background-color: rgb(94, 194, 105);
   }
@@ -232,7 +236,6 @@
   .p-button .p-button-icon-left {
     margin: 0;
   }
-/* ciao */
 
   .p-listbox-header {
     background-color: rgb(19, 19, 19);
