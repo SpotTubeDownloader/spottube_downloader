@@ -71,20 +71,23 @@ export default function SongScroller({
     };
     const playSong = async (link) => {
       console.log(`${link}`);
-      const response = await streamSong(token, link);
-      console.log(`MAMT ${response}`);
-      setSongName(decodeURIComponent(response.headers["songname"]));
-      setArtist(decodeURIComponent(response.headers["artist"]));
-      setDuration(decodeURIComponent(response.headers["duration"]));
-      setThumbnail(response.headers["thumbnail"]);
-
-      const context = new (window.AudioContext || window.webkitAudioContext)();
-      const buffer = await context.decodeAudioData(response.data);
-      const source = context.createBufferSource();
-      source.buffer = buffer;
-      source.connect(context.destination);
-      source.start(0);
-
+      try{
+        const response = await streamSong(token, link);
+        console.log(`MAMT ${response}`);
+        setSongName(decodeURIComponent(response.headers["songname"]));
+        setArtist(decodeURIComponent(response.headers["artist"]));
+        setDuration(decodeURIComponent(response.headers["duration"]));
+        setThumbnail(response.headers["thumbnail"]);
+  
+        const context = new (window.AudioContext || window.webkitAudioContext)();
+        const buffer = await context.decodeAudioData(response.data);
+        const source = context.createBufferSource();
+        source.buffer = buffer;
+        source.connect(context.destination);
+        source.start(0);
+      }catch(error){
+        console.error(error);
+      }
     }
 
     return (
