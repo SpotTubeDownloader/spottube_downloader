@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { DataScroller } from "primereact/datascroller";
 import { Button } from "primereact/button";
 import { downloadSongByYoutubeLink } from "../../service/MusicService";
@@ -12,6 +12,7 @@ import {
 } from "../../service/FavoriteService";
 import "../../css/scroller.css";
 import "../../css/spinner.css";
+import { SongContext } from "../../context/SongContext";
 
 export default function SongScroller({
   songs,
@@ -23,6 +24,7 @@ export default function SongScroller({
   const [loading, setLoading] = useState(false);
   const [favoriteLinks, setFavoriteLinks] = useState([]);
   const [data, setData] = useState(songs);
+  const { setSongName, setArtist, setDuration, setThumbnail } = useContext(SongContext); 
 
   const deleteCallback = async (id) => {
     setLoading(true);
@@ -44,7 +46,7 @@ export default function SongScroller({
     try {
       await addFavorite(token, user.sub, link);
       console.log("Favorite added");
-      setFavoriteLinks((prevLinks) => [...prevLinks, link]); // Add the link to the array of favorite links
+      setFavoriteLinks((prevLinks) => [...prevLinks, link]);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -53,12 +55,13 @@ export default function SongScroller({
   };
 
   const songsTemplate = (data) => {
-    const buttonCallback = async () => {
+    const downloadCallback = async () => {
       setLoading(true);
       try {
         await downloadSongByYoutubeLink(token, user.sub, data.link);
         if (isHistory) {
           setData(await getHistory(token, user.sub));
+          console.log(data);
         }
         setLoading(false);
       } catch (error) {
@@ -66,6 +69,16 @@ export default function SongScroller({
         setLoading(false);
       }
     };
+    const playSong = async (link) => {
+      console.log(`${link}`);
+      downloadSongByYoutubeLink(token, user.sub, link, false).then((data) => {
+        console.log(`MAMT ${data}`);
+        setSongName(data[0]);
+        setArtist(data[1]);
+        setDuration(data[1]);
+        return data;
+      });
+    }
 
     return (
       <div id="songScroller">
@@ -86,7 +99,13 @@ export default function SongScroller({
               icon="pi pi-download"
               label="Scarica"
               severity="success"
-              onClick={buttonCallback}
+              onClick={downloadCallback}
+            ></Button>
+            <Button
+              id="historyButtons"
+              icon="pi pi-play"
+              label="Riproduci"
+              onClick={() => playSong(data.link)}
             ></Button>
             <Button
               id="historyButtons"
@@ -106,7 +125,7 @@ export default function SongScroller({
               icon="pi pi-download"
               label="Scarica"
               severity="success"
-              onClick={buttonCallback}
+              onClick={downloadCallback}
             ></Button>
             <Button
               id="favoritesButton"
@@ -140,7 +159,7 @@ export default function SongScroller({
               icon="pi pi-download"
               label="Scarica"
               severity="success"
-              onClick={buttonCallback}
+              onClick={downloadCallback}
             ></Button>
             <Button
               id="favoritesButton"
