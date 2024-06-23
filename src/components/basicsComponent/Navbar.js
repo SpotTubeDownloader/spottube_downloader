@@ -14,7 +14,7 @@ import "../../css/dialogGeneral.css";
 //take api url from .env file
 const apiUrl = process.env.REACT_APP_API_URL;
 
-export default function Navbar({ token }) {
+export default function Navbar({ token, setPlayer}) {
   const [dialogVisible, setDialogVisible] = useState(false);
   const [dialogType, setDialogType] = useState("");
   const [dialogPosition, setDialogPosition] = useState("center");
@@ -114,6 +114,8 @@ export default function Navbar({ token }) {
           onHide={() => setDialogVisible(false)}
           favorite={favorite}
           token={token}
+          setPlayer={setPlayer}
+          setDialogVisible={setDialogVisible}
         />
       )}
       {dialogVisible && dialogType === "history" &&(

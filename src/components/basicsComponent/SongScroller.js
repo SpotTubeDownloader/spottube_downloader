@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { DataScroller } from "primereact/datascroller";
 import { Button } from "primereact/button";
 import { downloadSongByYoutubeLink, streamSong } from "../../service/MusicService";
@@ -19,6 +19,8 @@ export default function SongScroller({
   token,
   isHistory = false,
   isFavorite = false,
+  setPlayer,
+  setDialogVisible,
 }) {
   const { user } = useAuth0();
   const [loading, setLoading] = useState(false);
@@ -69,8 +71,11 @@ export default function SongScroller({
         setLoading(false);
       }
     };
+    
     const playSong = async (link) => {
       console.log(`${link}`);
+      setLoading(true);
+      setPlayer(true);
       try{
         const response = await streamSong(token, link);
         console.log(`MAMT ${response}`);
@@ -102,8 +107,12 @@ export default function SongScroller({
         setSourceNode(source);
         setPlaying(true);
         source.start(0);
+        setLoading(false);
+        setDialogVisible(false);
       }catch(error){
         console.error(error);
+        setDialogVisible(false);
+        setLoading(false);
       }
     }
 
