@@ -1,21 +1,95 @@
-import React, { useContext } from "react";
-import { useState } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import "../../css/player.css";
 import { SongContext } from "../../context/SongContext";
 
-
 export default function Player() {
-  const [player, setPlayer] = useState(null);
-  const [playing, setPlaying] = useState(false);
-  const { songName, duration, thumbnail, artist } = useContext(SongContext);
-  console.log("[SongName]: ", songName);
-  const togglePlayPause = () => {
-    setPlaying(!playing);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [startTime, setStartTime] = useState(0);
+  const [seekSliderRef, setSeekSliderRef] = useState(0);
+  const [animationFrameRef, setAnimationFrameRef] = useState(null);
+
+  const { songName, duration, thumbnail, artist, audioContext, playing, setPlaying, sourceNode, setSourceNode, audioBuffer, setAudioBuffer } = useContext(SongContext);
+
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
   };
 
+  const togglePlayPause = () => {
+    if (audioContext && playing) {
+      audioContext.suspend().then(() => {
+        setPlaying(false);
+        cancelAnimationFrame(animationFrameRef);
+      });
+    } else if (audioContext && !playing) {
+      audioContext.resume().then(() => {
+        setPlaying(true);
+        requestAnimationFrame(updateTime);
+      });
+    }
+  };
 
-  let url =
-    thumbnail;
+  const updateTime = () => {
+    if (playing && audioContext && sourceNode) {
+      const currentTime = audioContext.currentTime - startTime;
+      setCurrentTime(currentTime);
+      setSeekSliderRef(currentTime)
+      
+      setAnimationFrameRef(requestAnimationFrame(updateTime));
+    }
+  };
+
+  useEffect(() => {
+    if (playing) {
+      requestAnimationFrame(updateTime);
+    }
+    return () => {
+      cancelAnimationFrame(animationFrameRef);
+    };
+  }, [playing]);
+
+  const seekSong = (seekTo) => {
+    console.log("Seeking");
+    console.log("[SeekSong]: ", seekTo);
+    if (audioContext) {
+      if (sourceNode) {
+        sourceNode.stop(0);
+        sourceNode.disconnect();
+      }
+
+      const source = audioContext.createBufferSource();
+      source.buffer = audioBuffer;
+      source.connect(audioContext.destination);
+      setSourceNode(source);
+      source.start(0, seekTo);
+      setStartTime(audioContext.currentTime - seekTo);
+      setPlaying(true);
+      requestAnimationFrame(updateTime);
+    }
+  };
+  
+
+  const handleSliderChange = (event) => {
+    event.stopPropagation();
+    cancelAnimationFrame(animationFrameRef.current);
+    setSeekSliderRef(event.target.value);
+    console.log("[HandleSliderChange]: ", event.target.value);
+    const seekTo = event.target.value
+    setCurrentTime(seekTo);
+    seekSong(seekTo);
+
+  };
+
+  const convertDurationToSeconds = (duration) => {
+    const parts = duration.split(':');
+    const minutes = parseInt(parts[0], 10);
+    const seconds = parseInt(parts[1], 10);
+    return (minutes * 60) + seconds;
+  };
+
+  let url = thumbnail;
   return (
     <div
       className="player-content"
@@ -51,14 +125,19 @@ export default function Player() {
             </svg>
           </div>
         )}
-        {/* sostituire i valori che variano con quelli restituiti dallo streamer */}
         <div id="track-slider-container">
-          <input type="range" id="seek-slider" max="100"></input>
+          <input
+            type="range"
+            id="seek-slider"
+            value={seekSliderRef}
+            max={convertDurationToSeconds(duration)}
+            onChange={handleSliderChange}
+          ></input>
           <div id="track-times">
-            <div id="current-time" class="time">
-              0:00
+            <div id="current-time" className="time">
+              {formatTime(currentTime)}
             </div>
-            <div id="duration" class="time">
+            <div id="duration" className="time">
               {duration}
             </div>
           </div>

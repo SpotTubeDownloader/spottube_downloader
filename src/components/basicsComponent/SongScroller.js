@@ -24,7 +24,7 @@ export default function SongScroller({
   const [loading, setLoading] = useState(false);
   const [favoriteLinks, setFavoriteLinks] = useState([]);
   const [data, setData] = useState(songs);
-  const { setSongName, setArtist, setDuration, setThumbnail } = useContext(SongContext); 
+  const { setSongName, setArtist, setDuration, setThumbnail, audioBuffer, setAudioBuffer, audioContext, setAudioContext ,sourceNode,setSourceNode, playing, setPlaying} = useContext(SongContext); 
 
   const deleteCallback = async (id) => {
     setLoading(true);
@@ -78,12 +78,29 @@ export default function SongScroller({
         setArtist(decodeURIComponent(response.headers["artist"]));
         setDuration(decodeURIComponent(response.headers["duration"]));
         setThumbnail(response.headers["thumbnail"]);
-  
+        
+        if (audioContext){
+          audioContext.close();
+        }
+        if(sourceNode){
+          sourceNode.stop(0);
+          sourceNode.disconnect();
+        }
+        if(audioBuffer){
+          setAudioBuffer(null);
+        }
+
         const context = new (window.AudioContext || window.webkitAudioContext)();
-        const buffer = await context.decodeAudioData(response.data);
+        setAudioContext(context);
+
+        const arrayBuffer = await context.decodeAudioData(response.data);
+        setAudioBuffer(arrayBuffer);
+
         const source = context.createBufferSource();
-        source.buffer = buffer;
+        source.buffer = arrayBuffer;
         source.connect(context.destination);
+        setSourceNode(source);
+        setPlaying(true);
         source.start(0);
       }catch(error){
         console.error(error);
