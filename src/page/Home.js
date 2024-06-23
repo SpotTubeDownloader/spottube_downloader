@@ -11,6 +11,7 @@ import { SongProvider } from '../context/SongContext';
 function Home() {
   const [token, setToken] = useState('');
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const [ player, setPlayer ] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,11 +28,13 @@ function Home() {
     <SongProvider>
       <div className="Home">
         <div className='navbar'>
-          <Navbar token={token} />
+          <Navbar token={token} setPlayer={setPlayer}/>
         </div>
-        <div className='player-div'>
-          <Player />
-        </div>
+        {player && (
+          <div className='player-div'>
+            <Player />
+          </div>
+        )}
       </div>
     </SongProvider>
   );
