@@ -1,15 +1,15 @@
-import React, { useContext, useRef, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import "../../css/player.css";
 import { SongContext } from "../../context/SongContext";
 
-export default function Player() {
+export default function Player({setPlayer}) {
   const [currentTime, setCurrentTime] = useState(0);
   const [startTime, setStartTime] = useState(0);
-  const [seekSliderRef, setSeekSliderRef] = useState(0);
-  const [animationFrameRef, setAnimationFrameRef] = useState(null);
+  const [seekSliderValue, setSeekSliderValue] = useState(0);
 
-  const { songName, duration, thumbnail, artist, audioContext, playing, setPlaying, sourceNode, setSourceNode, audioBuffer, setAudioBuffer } = useContext(SongContext);
+  const { songName, duration, thumbnail, artist, audioContext, playing, setPlaying, sourceNode, setSourceNode, audioBuffer } = useContext(SongContext);
 
+  const animationFrameRef = useRef(null);
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -21,7 +21,7 @@ export default function Player() {
     if (audioContext && playing) {
       audioContext.suspend().then(() => {
         setPlaying(false);
-        cancelAnimationFrame(animationFrameRef);
+        cancelAnimationFrame(animationFrameRef.current);
       });
     } else if (audioContext && !playing) {
       audioContext.resume().then(() => {
@@ -31,28 +31,43 @@ export default function Player() {
     }
   };
 
+  const stopPlayback = () => {
+    if (audioContext && sourceNode) {
+      sourceNode.stop(0);
+      sourceNode.disconnect();
+      setSourceNode(null);
+      setPlaying(false);
+      setCurrentTime(0);
+      setSeekSliderValue(0);
+      cancelAnimationFrame(animationFrameRef.current);
+    }
+  };
+
   const updateTime = () => {
     if (playing && audioContext && sourceNode) {
       const currentTime = audioContext.currentTime - startTime;
       setCurrentTime(currentTime);
-      setSeekSliderRef(currentTime)
-      
-      setAnimationFrameRef(requestAnimationFrame(updateTime));
+      setSeekSliderValue(currentTime);
+
+      if (currentTime >= convertDurationToSeconds(duration)) {
+        stopPlayback();
+        setPlayer(false);
+      } else {
+        animationFrameRef.current = requestAnimationFrame(updateTime);
+      }
     }
   };
 
   useEffect(() => {
     if (playing) {
-      requestAnimationFrame(updateTime);
+      animationFrameRef.current = requestAnimationFrame(updateTime);
     }
     return () => {
-      cancelAnimationFrame(animationFrameRef);
+      cancelAnimationFrame(animationFrameRef.current);
     };
   }, [playing]);
 
   const seekSong = (seekTo) => {
-    console.log("Seeking");
-    console.log("[SeekSong]: ", seekTo);
     if (audioContext) {
       if (sourceNode) {
         sourceNode.stop(0);
@@ -69,17 +84,14 @@ export default function Player() {
       requestAnimationFrame(updateTime);
     }
   };
-  
 
   const handleSliderChange = (event) => {
     event.stopPropagation();
     cancelAnimationFrame(animationFrameRef.current);
-    setSeekSliderRef(event.target.value);
-    console.log("[HandleSliderChange]: ", event.target.value);
-    const seekTo = event.target.value
+    setSeekSliderValue(event.target.value);
+    const seekTo = event.target.value;
     setCurrentTime(seekTo);
     seekSong(seekTo);
-
   };
 
   const convertDurationToSeconds = (duration) => {
@@ -129,7 +141,7 @@ export default function Player() {
           <input
             type="range"
             id="seek-slider"
-            value={seekSliderRef}
+            value={seekSliderValue}
             max={convertDurationToSeconds(duration)}
             onChange={handleSliderChange}
           ></input>
@@ -146,3 +158,5 @@ export default function Player() {
     </div>
   );
 }
+
+

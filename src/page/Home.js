@@ -32,7 +32,7 @@ function Home() {
         </div>
         {player && (
           <div className='player-div'>
-            <Player />
+            <Player setPlayer={setPlayer}/>
           </div>
         )}
       </div>
