@@ -26,7 +26,23 @@ export default function SongScroller({
   const [loading, setLoading] = useState(false);
   const [favoriteLinks, setFavoriteLinks] = useState([]);
   const [data, setData] = useState(songs);
-  const { setSongName, setArtist, setDuration, setThumbnail, audioBuffer, setAudioBuffer, audioContext, setAudioContext ,sourceNode,setSourceNode, playing, setPlaying} = useContext(SongContext); 
+  const { 
+    setSongName, 
+    setArtist, 
+    setCurrentTime,
+    setThumbnail, 
+    audioBuffer, 
+    setAudioBuffer, 
+    audioContext, 
+    setAudioContext,
+    sourceNode,
+    setSourceNode, 
+    setPlaying, 
+    setDuration, 
+    setSeekSliderValue,
+    setStartTime,
+    animationFrameRef
+  } = useContext(SongContext); 
 
   const deleteCallback = async (id) => {
     setLoading(true);
@@ -83,6 +99,9 @@ export default function SongScroller({
         setArtist(decodeURIComponent(response.headers["artist"]));
         setDuration(decodeURIComponent(response.headers["duration"]));
         setThumbnail(response.headers["thumbnail"]);
+        setCurrentTime(0);
+        setSeekSliderValue(0);
+        setStartTime(0);
         
         if (audioContext){
           audioContext.close();

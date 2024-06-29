@@ -3,13 +3,27 @@ import "../../css/player.css";
 import { SongContext } from "../../context/SongContext";
 
 export default function Player({setPlayer}) {
-  const [currentTime, setCurrentTime] = useState(0);
-  const [startTime, setStartTime] = useState(0);
-  const [seekSliderValue, setSeekSliderValue] = useState(0);
 
-  const { songName, duration, thumbnail, artist, audioContext, playing, setPlaying, sourceNode, setSourceNode, audioBuffer } = useContext(SongContext);
+  const { 
+    songName, 
+    duration, 
+    thumbnail, 
+    artist, 
+    audioContext, 
+    playing, 
+    setPlaying, 
+    sourceNode, 
+    setSourceNode, 
+    audioBuffer,
+    currentTime, 
+    setCurrentTime,
+    seekSliderValue, 
+    setSeekSliderValue,
+    startTime, 
+    setStartTime,
+    animationFrameRef
+  } = useContext(SongContext);
 
-  const animationFrameRef = useRef(null);
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -44,10 +58,14 @@ export default function Player({setPlayer}) {
   };
 
   const updateTime = () => {
+    console.log("ping");
     if (playing && audioContext && sourceNode) {
-      const currentTime = audioContext.currentTime - startTime;
-      setCurrentTime(currentTime);
-      setSeekSliderValue(currentTime);
+      console.log("pong")
+      const time = audioContext.currentTime - startTime;
+      setCurrentTime(time);
+      setSeekSliderValue(time);
+      console.log("[CurrentTime]: ",currentTime)
+      console.log("[time]: ", time)
 
       if (currentTime >= convertDurationToSeconds(duration)) {
         stopPlayback();
@@ -55,6 +73,8 @@ export default function Player({setPlayer}) {
       } else {
         animationFrameRef.current = requestAnimationFrame(updateTime);
       }
+    }else{
+      setTimeout(()=>{animationFrameRef.current = requestAnimationFrame(updateTime);},500)
     }
   };
 
