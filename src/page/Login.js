@@ -19,7 +19,7 @@ function Login() {
                 name: user.name,
                 picture: user.picture,
                 nickname: user.nickname,
-                sub: user.sub
+                userSub: user.sub
             },{
                 headers:{
                     authorization: `Bearer ${token}`,
