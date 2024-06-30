@@ -19,10 +19,8 @@ export default function SelectMusicName({ token, setDialogVisible}) {
         setLoading(true);
         try {
             getSongsList(token, value).then((data) => {
-                console.log(data);
                 setVisible(true);
                 setSongs(data);
-                console.log(data);
                 setLoading(false);
             }).catch((error) => {
                 console.log(error);

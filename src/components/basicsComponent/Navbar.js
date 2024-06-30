@@ -38,7 +38,6 @@ export default function Navbar({token}) {
         setDialogType("favorites");
         try{
             getFavorite(token, user.sub).then(data=>{
-                console.log(data);
                 setFavorite(data);
                 setDialogVisible(true);
             }).catch(err=>{
@@ -57,7 +56,6 @@ export default function Navbar({token}) {
         setDialogType("history");
         try {
           getHistory(token, user.sub).then(data=>{
-            console.log(data);
             setHistory(data);
             setDialogVisible(true);
           }).catch(err=>{

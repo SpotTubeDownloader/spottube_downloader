@@ -4,7 +4,6 @@ const api_url = process.env.REACT_APP_API_URL;
 
 
 export async function addFavorite(token, userSub, link){
-    console.log("Add Favorite");
     const response = await axios.post(`${api_url}/user/favorite/addFavoriteByUserSub`,
     {
         videoLink: link,
@@ -30,8 +29,6 @@ export async function getFavorite(token, userSub){
 
 
 export async function deleteFavoriteBySongId(token, userSub, songId){
-    console.log("[Inside deleteFavoriteBySongId]");
-    console.log(songId)
     const response = await axios.post(`${api_url}/user/favorite/deleteFavoriteBySongId`,
     {
         songId: songId,

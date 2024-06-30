@@ -26,20 +26,13 @@ export default function SongScroller({
   const [favoriteLinks, setFavoriteLinks] = useState([]);
   const [data, setData] = useState(songs);
   const { 
-    setSongName, 
-    setArtist, 
-    setCurrentTime,
-    setThumbnail, 
-    audioBuffer, 
-    setAudioBuffer, 
-    audioContext, 
-    setAudioContext,
-    sourceNode,
-    setSourceNode, 
-    setPlaying, 
-    setDuration, 
-    setSeekSliderValue,
-    setStartTime,
+    audioRef,
+    setIsPlaying,
+    setSeekValue,
+    setThumbnail,
+    setSongName,
+    setArtist,
+    setDuration,
     setPlayer
   } = useContext(SongContext); 
 
@@ -62,7 +55,6 @@ export default function SongScroller({
     setLoading(true);
     try {
       await addFavorite(token, user.sub, link);
-      console.log("Favorite added");
       setFavoriteLinks((prevLinks) => [...prevLinks, link]);
       setLoading(false);
     } catch (error) {
@@ -78,7 +70,6 @@ export default function SongScroller({
         await downloadSongByYoutubeLink(token, user.sub, data.link);
         if (isHistory) {
           setData(await getHistory(token, user.sub));
-          console.log(data);
         }
         setLoading(false);
       } catch (error) {
@@ -88,43 +79,20 @@ export default function SongScroller({
     };
     
     const playSong = async (link) => {
-      console.log(`${link}`);
       setLoading(true);
-      setPlayer(true);
       try{
+        setPlayer(true);
         const response = await streamSong(token, link);
-        console.log(`MAMT ${response}`);
+        const blob = new Blob([response.data], { type: 'audio/mpeg' });
+        const url = URL.createObjectURL(blob);
         setSongName(decodeURIComponent(response.headers["songname"]));
         setArtist(decodeURIComponent(response.headers["artist"]));
         setDuration(decodeURIComponent(response.headers["duration"]));
         setThumbnail(response.headers["thumbnail"]);
-        setCurrentTime(0);
-        setSeekSliderValue(0);
-        setStartTime(0);
-        
-        if (audioContext){
-          audioContext.close();
-        }
-        if(sourceNode){
-          sourceNode.stop(0);
-          sourceNode.disconnect();
-        }
-        if(audioBuffer){
-          setAudioBuffer(null);
-        }
-
-        const context = new (window.AudioContext || window.webkitAudioContext)();
-        setAudioContext(context);
-
-        const arrayBuffer = await context.decodeAudioData(response.data);
-        setAudioBuffer(arrayBuffer);
-
-        const source = context.createBufferSource();
-        source.buffer = arrayBuffer;
-        source.connect(context.destination);
-        setSourceNode(source);
-        setPlaying(true);
-        source.start(0);
+        setSeekValue(0);
+        audioRef.current.src = url;
+        audioRef.current.play();
+        setIsPlaying(true);
         setLoading(false);
         setDialogVisible(false);
       }catch(error){

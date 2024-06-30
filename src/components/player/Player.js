@@ -1,26 +1,16 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext} from "react";
 import "../../css/player.css";
 import { SongContext } from "../../context/SongContext";
 
 export default function Player() {
   const { 
-    songName, 
-    duration, 
-    thumbnail, 
-    artist, 
-    audioContext, 
-    playing, 
-    setPlaying, 
-    sourceNode, 
-    setSourceNode, 
-    audioBuffer,
-    currentTime, 
-    setCurrentTime,
-    seekSliderValue, 
-    setSeekSliderValue,
-    startTime, 
-    setStartTime,
-    animationFrameRef,
+    audioRef,
+    isPlaying, setIsPlaying,
+    seekValue, setSeekValue,
+    thumbnail,
+    songName,
+    artist,
+    duration,
     setPlayer
   } = useContext(SongContext);
 
@@ -30,105 +20,49 @@ export default function Player() {
     return `${minutes}:${seconds}`;
   };
 
-  const togglePlayPause = () => {
-    if (audioContext && playing) {
-      audioContext.suspend().then(() => {
-        setPlaying(false);
-        cancelAnimationFrame(animationFrameRef.current);
-      });
-    } else if (audioContext && !playing) {
-      audioContext.resume().then(() => {
-        setPlaying(true);
-        requestAnimationFrame(updateTime);
-      });
-    }
-  };
+  const playAudio = () => {
+    audioRef.current.play();
+    setIsPlaying(true);
+};
 
-  const stopPlayback = () => {
-    if (audioContext && sourceNode) {
-      sourceNode.stop(0);
-      sourceNode.disconnect();
-      setSourceNode(null);
-      setPlaying(false);
-      setCurrentTime(0);
-      setSeekSliderValue(0);
-      cancelAnimationFrame(animationFrameRef.current);
-    }
-  };
+const pauseAudio = () => {
+    audioRef.current.pause();
+    setIsPlaying(false);
+};
 
-  const updateTime = () => {
-    console.log("ping");
-    if (playing && audioContext && sourceNode) {
-      console.log("pong")
-      const time = audioContext.currentTime - startTime;
-      setCurrentTime(time);
-      setSeekSliderValue(time);
-      console.log("[CurrentTime]: ",currentTime)
-      console.log("[time]: ", time)
+  const handleSeek = (event) => {
+    audioRef.current.currentTime = event.target.value ;
+    setSeekValue(event.target.value);
+};
 
-      if (currentTime >= convertDurationToSeconds(duration)) {
-        stopPlayback();
-        setPlayer(false);
-      } else {
-        animationFrameRef.current = requestAnimationFrame(updateTime);
-      }
-    } else {
-      setTimeout(() => {
-        animationFrameRef.current = requestAnimationFrame(updateTime);
-      }, 500);
-    }
-  };
-
-  useEffect(() => {
-    if (playing) {
-      animationFrameRef.current = requestAnimationFrame(updateTime);
-    }
-    return () => {
-      cancelAnimationFrame(animationFrameRef.current);
-    };
-  }, [playing]);
-
-  const seekSong = (seekTo) => {
-    if (audioContext) {
-      if (sourceNode) {
-        sourceNode.stop(0);
-        sourceNode.disconnect();
-      }
-
-      const source = audioContext.createBufferSource();
-      source.buffer = audioBuffer;
-      source.connect(audioContext.destination);
-      setSourceNode(source);
-      source.start(0, seekTo);
-      setStartTime(audioContext.currentTime - seekTo);
-      setPlaying(true);
-      requestAnimationFrame(updateTime);
-    }
-  };
-
-  const handleSliderChange = (event) => {
-    event.stopPropagation();
-    cancelAnimationFrame(animationFrameRef.current);
-    setSeekSliderValue(event.target.value);
-    const seekTo = event.target.value;
-    setCurrentTime(seekTo);
-    seekSong(seekTo);
-  };
+  
 
   const convertDurationToSeconds = (duration) => {
+    if(duration ==='')
+      return 0;
     const parts = duration.split(':');
     const minutes = parseInt(parts[0], 10);
     const seconds = parseInt(parts[1], 10);
     return (minutes * 60) + seconds;
   };
 
-  let url = thumbnail;
+
+  const updateSeek = () => {
+    if(audioRef.current.currentTime === audioRef.current.duration){
+      setIsPlaying(false);
+      setPlayer(false);
+    }
+    const value = audioRef.current.currentTime;
+    setSeekValue(value);
+};
+
   return (
     <div className="player-container">
+      <audio ref={audioRef} onTimeUpdate={updateSeek} style={{ display: "none" }}/>
       <div
         className="player-content"
         style={{
-          background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 49%, rgba(0, 0, 0, 0.70) 100%), url(${url}) lightgray 50% / cover no-repeat`,
+          background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 49%, rgba(0, 0, 0, 0.70) 100%), url(${thumbnail}) lightgray 50% / cover no-repeat`,
         }}
       >
         <div className="songInfos">
@@ -140,8 +74,8 @@ export default function Player() {
           </div>
         </div>
         <div className="control">
-          {!playing ? (
-            <div className="play-button" onClick={togglePlayPause}>
+          {!isPlaying ? (
+            <div className="play-button" onClick={playAudio}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
                 <path
                   fill="#ffffff"
@@ -150,7 +84,7 @@ export default function Player() {
               </svg>
             </div>
           ) : (
-            <div className="play-button" onClick={togglePlayPause}>
+            <div className="play-button" onClick={pauseAudio}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                 <path
                   fill="#ffffff"
@@ -163,13 +97,13 @@ export default function Player() {
             <input
               type="range"
               id="seek-slider"
-              value={seekSliderValue}
+              value={seekValue}
               max={convertDurationToSeconds(duration)}
-              onChange={handleSliderChange}
+              onChange={handleSeek}
             ></input>
             <div id="track-times">
               <div id="current-time" className="time">
-                {formatTime(currentTime)}
+                {formatTime(seekValue)}
               </div>
               <div id="duration" className="time">
                 {duration}
