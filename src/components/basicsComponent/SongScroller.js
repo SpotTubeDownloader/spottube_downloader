@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { DataScroller } from "primereact/datascroller";
 import { Button } from "primereact/button";
 import { downloadSongByYoutubeLink, streamSong } from "../../service/MusicService";
@@ -19,7 +19,6 @@ export default function SongScroller({
   token,
   isHistory = false,
   isFavorite = false,
-  setPlayer,
   setDialogVisible,
 }) {
   const { user } = useAuth0();
@@ -41,7 +40,7 @@ export default function SongScroller({
     setDuration, 
     setSeekSliderValue,
     setStartTime,
-    animationFrameRef
+    setPlayer
   } = useContext(SongContext); 
 
   const deleteCallback = async (id) => {
@@ -183,6 +182,12 @@ export default function SongScroller({
               onClick={downloadCallback}
             ></Button>
             <Button
+              id="historyButtons"
+              icon="pi pi-play"
+              label="Riproduci"
+              onClick={() => playSong(data.link)}
+            ></Button>
+            <Button
               id="favoritesButton"
               icon="pi pi-star"
               style={{
@@ -215,6 +220,12 @@ export default function SongScroller({
               label="Scarica"
               severity="success"
               onClick={downloadCallback}
+            ></Button>
+            <Button
+              id="historyButtons"
+              icon="pi pi-play"
+              label="Riproduci"
+              onClick={() => playSong(data.link)}
             ></Button>
             <Button
               id="favoritesButton"

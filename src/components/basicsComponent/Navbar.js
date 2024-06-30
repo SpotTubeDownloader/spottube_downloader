@@ -14,7 +14,7 @@ import "../../css/dialogGeneral.css";
 //take api url from .env file
 const apiUrl = process.env.REACT_APP_API_URL;
 
-export default function Navbar({ token, setPlayer}) {
+export default function Navbar({token}) {
   const [dialogVisible, setDialogVisible] = useState(false);
   const [dialogType, setDialogType] = useState("");
   const [dialogPosition, setDialogPosition] = useState("center");
@@ -84,8 +84,11 @@ export default function Navbar({ token, setPlayer}) {
       label: 'Logout',
       icon: "pi pi-sign-out",
       command: () => {
-        logout();
-        navigate("/");
+        logout({
+          logoutParams: {
+            returnTo: window.location.origin,
+          },
+        });
       },
     },
   ];
@@ -93,7 +96,7 @@ export default function Navbar({ token, setPlayer}) {
   const start = user ? (
     <img alt="User" src={user.picture} className="mr-2"></img>
   ) : (
-    <img alt="logo" src="/logo.png" height="100" className="mr-2"></img>
+    <img alt="logo" src="/public/logo2.png" height="100" className="mr-2"></img>
   );
 
   return (
@@ -105,6 +108,7 @@ export default function Navbar({ token, setPlayer}) {
           position={dialogPosition}
           onHide={() => setDialogVisible(false)}
           token={token}
+          setDialogVisible={setDialogVisible}
         />
       )}
       {dialogVisible && dialogType === "favorites" && (
@@ -114,7 +118,6 @@ export default function Navbar({ token, setPlayer}) {
           onHide={() => setDialogVisible(false)}
           favorite={favorite}
           token={token}
-          setPlayer={setPlayer}
           setDialogVisible={setDialogVisible}
         />
       )}
@@ -125,6 +128,7 @@ export default function Navbar({ token, setPlayer}) {
           onHide={() => setDialogVisible(false)}
           history={history}
           token={token}
+          setDialogVisible={setDialogVisible}
         />
       )}
       {dialogVisible && dialogType === "info" && (

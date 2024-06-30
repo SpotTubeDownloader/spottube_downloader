@@ -2,8 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import "../../css/player.css";
 import { SongContext } from "../../context/SongContext";
 
-export default function Player({setPlayer}) {
-
+export default function Player() {
   const { 
     songName, 
     duration, 
@@ -21,9 +20,9 @@ export default function Player({setPlayer}) {
     setSeekSliderValue,
     startTime, 
     setStartTime,
-    animationFrameRef
+    animationFrameRef,
+    setPlayer
   } = useContext(SongContext);
-
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -73,8 +72,10 @@ export default function Player({setPlayer}) {
       } else {
         animationFrameRef.current = requestAnimationFrame(updateTime);
       }
-    }else{
-      setTimeout(()=>{animationFrameRef.current = requestAnimationFrame(updateTime);},500)
+    } else {
+      setTimeout(() => {
+        animationFrameRef.current = requestAnimationFrame(updateTime);
+      }, 500);
     }
   };
 
@@ -123,54 +124,56 @@ export default function Player({setPlayer}) {
 
   let url = thumbnail;
   return (
-    <div
-      className="player-content"
-      style={{
-        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 49%, rgba(0, 0, 0, 0.70) 100%), url(${url}) lightgray 50% / cover no-repeat`,
-      }}
-    >
-      <div className="songInfos">
-        <div>
-          <h1>{songName}</h1>
-        </div>
-        <div>
-          <h3>{artist}</h3>
-        </div>
-      </div>
-      <div className="control">
-        {!playing ? (
-          <div className="play-button" onClick={togglePlayPause}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-              <path
-                fill="#ffffff"
-                d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"
-              />
-            </svg>
+    <div className="player-container">
+      <div
+        className="player-content"
+        style={{
+          background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 49%, rgba(0, 0, 0, 0.70) 100%), url(${url}) lightgray 50% / cover no-repeat`,
+        }}
+      >
+        <div className="songInfos">
+          <div>
+            <h1>{songName}</h1>
           </div>
-        ) : (
-          <div className="play-button" onClick={togglePlayPause}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-              <path
-                fill="#ffffff"
-                d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"
-              />
-            </svg>
+          <div id="artist">
+            <h3>{artist}</h3>
           </div>
-        )}
-        <div id="track-slider-container">
-          <input
-            type="range"
-            id="seek-slider"
-            value={seekSliderValue}
-            max={convertDurationToSeconds(duration)}
-            onChange={handleSliderChange}
-          ></input>
-          <div id="track-times">
-            <div id="current-time" className="time">
-              {formatTime(currentTime)}
+        </div>
+        <div className="control">
+          {!playing ? (
+            <div className="play-button" onClick={togglePlayPause}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <path
+                  fill="#ffffff"
+                  d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"
+                />
+              </svg>
             </div>
-            <div id="duration" className="time">
-              {duration}
+          ) : (
+            <div className="play-button" onClick={togglePlayPause}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path
+                  fill="#ffffff"
+                  d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"
+                />
+              </svg>
+            </div>
+          )}
+          <div id="track-slider-container">
+            <input
+              type="range"
+              id="seek-slider"
+              value={seekSliderValue}
+              max={convertDurationToSeconds(duration)}
+              onChange={handleSliderChange}
+            ></input>
+            <div id="track-times">
+              <div id="current-time" className="time">
+                {formatTime(currentTime)}
+              </div>
+              <div id="duration" className="time">
+                {duration}
+              </div>
             </div>
           </div>
         </div>
@@ -178,5 +181,3 @@ export default function Player({setPlayer}) {
     </div>
   );
 }
-
-
