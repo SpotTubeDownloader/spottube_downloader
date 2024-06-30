@@ -1,6 +1,5 @@
 import axios from "axios";
 import { saveAs } from 'file-saver';
-import Player from "../components/player/Player";
 
 
 const api_url = process.env.REACT_APP_API_URL;
