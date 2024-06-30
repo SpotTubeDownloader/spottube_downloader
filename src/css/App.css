@@ -8,6 +8,13 @@
   }
 }
 
+
+.page-layout{
+
+  background-color: #ffffff00;
+
+}
+
 @media screen and (min-width: 960px) {
   .Home{
     display: flex;

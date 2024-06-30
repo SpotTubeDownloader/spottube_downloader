@@ -16,6 +16,7 @@
     display: block;
     flex-direction: row;
     width: fit-content;
+    width: -moz-fit-content;
   }
   .p-menuitem{
     display: flex;
@@ -51,6 +52,7 @@
     justify-content: center;
     align-items: center;
     width: fit-content;
+    width: -moz-fit-content;
     margin-top: 2vh;
     margin-bottom: 2vh;
     height: fit-content;
@@ -129,11 +131,16 @@
   .p-menuitem-text{
     color:rgb(160, 160, 160);
   }
+  .p-menuitem-link:hover .p-menuitem-text{
+    transform: scale(1.02);
+    transition: transform 0.5s;
+  }
   .p-menubar-start {
     display: flex;
     justify-content: center;
     align-items: center;
     width: fit-content;
+    width: -moz-fit-content;
     margin-top: 1vh;
     margin-bottom: 1vh;
     margin-right: 2vw;
