@@ -6,7 +6,6 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
     const navigate = useNavigate();
 
     const onRedirectCallback = (appState) => {
-        console.log("[Navigazione in corso]: ",appState);
         navigate((appState && appState.returnTo) || window.location.pathname);
     };
 

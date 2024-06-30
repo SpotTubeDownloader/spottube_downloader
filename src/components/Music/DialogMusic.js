@@ -5,7 +5,6 @@ import SelectMusicName from "./SelectMusicName";
 import "../../css/dialogGeneral.css";
 
 export default function DialogMusic({ visible, position, onHide, token, setDialogVisible}) {
-  console.log("[DialogMusic] token: ", token);
   return (
     <div className="card">
       <Dialog
