@@ -14,7 +14,7 @@ import axios from 'axios';
 
 function Home() {
   const [token, setToken] = useState('');
-  const { isAuthenticated, getAccessTokenSilently,user, logout} = useAuth0();
+  const { isAuthenticated, getAccessTokenSilently,user, logout, isLoading} = useAuth0();
   const navigate = useNavigate();
   const api_url = process.env.REACT_APP_API_URL;
   const {player} = useContext(SongContext);
@@ -22,6 +22,7 @@ function Home() {
 
 
   useEffect(() => {
+    if(!isLoading)
     if (isAuthenticated) {
       getAccessTokenSilently().then((token) => {
         setToken(token);
@@ -37,12 +38,9 @@ function Home() {
             }
         }).then((response) => {
             console.log(response.data);
-        }).catch((err) => {
-          logout({
-            logoutParams: {
-              returnTo: window.location.origin,
-            },
-          });
+        }).catch((error) => {
+            if(error.code !=="ECONNABORTED")
+                logout({ returnTo: window.location.origin });
         });
         }
     )

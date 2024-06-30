@@ -4,15 +4,13 @@ import DialogInfo from "../Info/DialogInfo.js";
 import DialogMusic from "../Music/DialogMusic.js";
 import DialogFavorites from "../Favorites/DialogFavorites.js";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useNavigate } from "react-router-dom";
 import DialogHistory from "../History/DialogHistory.js";
 import { getHistory } from "../../service/HistoryService.js";
 import { getFavorite } from "../../service/FavoriteService.js";
 import "../../css/navbar.css";
 import "../../css/dialogGeneral.css";
 
-//take api url from .env file
-const apiUrl = process.env.REACT_APP_API_URL;
+
 
 export default function Navbar({token}) {
   const [dialogVisible, setDialogVisible] = useState(false);
@@ -21,7 +19,6 @@ export default function Navbar({token}) {
   const [history, setHistory] = useState([]);
   const [favorite, setFavorite] = useState([]);
   const { logout, user } = useAuth0();
-  const navigate = useNavigate();
 
   const items = [
     {
