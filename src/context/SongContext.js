@@ -15,6 +15,7 @@ export const SongProvider = ({ children }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const animationFrameRef = useRef(null);
   const [startTime, setStartTime] = useState(0);
+  const [player, setPlayer] = useState(false);
 
 
 
@@ -32,6 +33,7 @@ export const SongProvider = ({ children }) => {
       seekSliderValue, setSeekSliderValue,
       currentTime, setCurrentTime,
       startTime, setStartTime,
+      player, setPlayer,
       animationFrameRef
     }}>
       {children}

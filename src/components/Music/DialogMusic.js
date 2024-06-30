@@ -4,7 +4,7 @@ import SelectMusicLink from "./SelectMusicLink";
 import SelectMusicName from "./SelectMusicName";
 import "../../css/dialogGeneral.css";
 
-export default function DialogMusic({ visible, position, onHide, token }) {
+export default function DialogMusic({ visible, position, onHide, token, setDialogVisible}) {
   console.log("[DialogMusic] token: ", token);
   return (
     <div className="card">
@@ -32,7 +32,7 @@ export default function DialogMusic({ visible, position, onHide, token }) {
           <br></br>
           <br></br>
           <div id="downloadBySongName">
-            <SelectMusicName token={token} />
+            <SelectMusicName token={token} setDialogVisible={setDialogVisible} />
           </div>
         </p>
       </Dialog>

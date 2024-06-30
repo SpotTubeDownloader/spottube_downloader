@@ -5,7 +5,7 @@ import "../../css/dialogGeneral.css";
 import "../../css/scroller.css";
 
 
-export default function DialogHistory({ visible, position, onHide, history , token}) {
+export default function DialogHistory({ visible, position, onHide, history , token, setDialogVisible}) {
     console.log(history);
   return (
     <div className="card">
@@ -19,7 +19,7 @@ export default function DialogHistory({ visible, position, onHide, history , tok
         resizable={false}
         maximizable
       >
-        <SongScroller songs={history} token={token} isHistory={true}/>
+        <SongScroller songs={history} token={token} isHistory={true} setDialogVisible={setDialogVisible}/>
       </Dialog>
     </div>
   );

@@ -10,7 +10,7 @@ import '../../css/scroller.css';
 
 
 
-export default function SelectMusicName({ token }) {
+export default function SelectMusicName({ token, setDialogVisible}) {
     const [visible, setVisible] = useState(false);
     const [songs, setSongs] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -43,7 +43,7 @@ export default function SelectMusicName({ token }) {
             }
             <Panel header="Scarica attraverso il nome" toggleable collapsed={true}>
                 {!visible && <SearchLabel token={token} buttonIcon={"search"} callbackButton={callbackButton} />}
-                {visible && songs !== null && <SongScroller songs={songs} token={token} />}
+                {visible && songs !== null && <SongScroller songs={songs} token={token} setDialogVisible={setDialogVisible}/>}
             </Panel>
         </>
     )
