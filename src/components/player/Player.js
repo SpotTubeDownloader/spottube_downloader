@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext, useEffect, useCallback} from "react";
 import "../../css/player.css";
 import { SongContext } from "../../context/SongContext";
 
@@ -29,6 +29,47 @@ const pauseAudio = () => {
     audioRef.current.pause();
     setIsPlaying(false);
 };
+
+const handleKeyPress = useCallback((event) => {
+  if (event.code === 'Space') {
+    event.preventDefault();
+    if (isPlaying) {
+      pauseAudio();
+    } else {
+      playAudio();
+    }
+  }
+
+  if (event.code === 'ArrowRight') {
+    event.preventDefault();
+    if (audioRef.current.currentTime + 5 > audioRef.current.duration) {
+      audioRef.current.currentTime = audioRef.current.duration;
+    }else{
+      audioRef.current.currentTime += 5;
+    }
+  }
+
+  if (event.code === 'ArrowLeft') {
+    event.preventDefault();
+    if (audioRef.current.currentTime - 5 < 0) {
+      audioRef.current.currentTime = 0;
+    }else{
+      audioRef.current.currentTime -= 5;
+    }
+  }
+  console.log(event.code)
+  if (event.code === 'Escape') {
+    event.preventDefault();
+    setPlayer(false);
+  }
+}, [isPlaying]);
+
+useEffect(() => {
+  window.addEventListener('keydown', handleKeyPress);
+  return () => {
+    window.removeEventListener('keydown', handleKeyPress);
+  };
+}, [handleKeyPress]);
 
   const handleSeek = (event) => {
     audioRef.current.currentTime = event.target.value ;
