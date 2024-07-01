@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Menubar } from "primereact/menubar";
 import DialogInfo from "../Info/DialogInfo.js";
 import DialogMusic from "../Music/DialogMusic.js";
@@ -9,11 +9,12 @@ import { getHistory } from "../../service/HistoryService.js";
 import { getFavorite } from "../../service/FavoriteService.js";
 import "../../css/navbar.css";
 import "../../css/dialogGeneral.css";
+import { SongContext } from "../../context/SongContext.js";
 
 
 
 export default function Navbar({token}) {
-  const [dialogVisible, setDialogVisible] = useState(false);
+  const {dialogVisible, setDialogVisible} = useContext(SongContext);
   const [dialogType, setDialogType] = useState("");
   const [dialogPosition, setDialogPosition] = useState("center");
   const [history, setHistory] = useState([]);

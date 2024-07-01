@@ -11,7 +11,8 @@ export default function Player() {
     songName,
     artist,
     duration,
-    setPlayer
+    setPlayer,
+    dialogVisible
   } = useContext(SongContext);
 
   const formatTime = (time) => {
@@ -31,38 +32,40 @@ const pauseAudio = () => {
 };
 
 const handleKeyPress = useCallback((event) => {
-  if (event.code === 'Space') {
-    event.preventDefault();
-    if (isPlaying) {
-      pauseAudio();
-    } else {
-      playAudio();
+  if(!dialogVisible){
+    if (event.code === 'Space') {
+      event.preventDefault();
+      if (isPlaying) {
+        pauseAudio();
+      } else {
+        playAudio();
+      }
+    }
+  
+    if (event.code === 'ArrowRight') {
+      event.preventDefault();
+      if (audioRef.current.currentTime + 5 > audioRef.current.duration) {
+        audioRef.current.currentTime = audioRef.current.duration;
+      }else{
+        audioRef.current.currentTime += 5;
+      }
+    }
+  
+    if (event.code === 'ArrowLeft') {
+      event.preventDefault();
+      if (audioRef.current.currentTime - 5 < 0) {
+        audioRef.current.currentTime = 0;
+      }else{
+        audioRef.current.currentTime -= 5;
+      }
+    }
+    if (event.code === 'Escape') {
+      event.preventDefault();
+      setPlayer(false);
     }
   }
-
-  if (event.code === 'ArrowRight') {
-    event.preventDefault();
-    if (audioRef.current.currentTime + 5 > audioRef.current.duration) {
-      audioRef.current.currentTime = audioRef.current.duration;
-    }else{
-      audioRef.current.currentTime += 5;
-    }
-  }
-
-  if (event.code === 'ArrowLeft') {
-    event.preventDefault();
-    if (audioRef.current.currentTime - 5 < 0) {
-      audioRef.current.currentTime = 0;
-    }else{
-      audioRef.current.currentTime -= 5;
-    }
-  }
-  console.log(event.code)
-  if (event.code === 'Escape') {
-    event.preventDefault();
-    setPlayer(false);
-  }
-}, [isPlaying]);
+  
+}, [isPlaying, dialogVisible]);
 
 useEffect(() => {
   window.addEventListener('keydown', handleKeyPress);
