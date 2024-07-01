@@ -23,28 +23,13 @@
     font-weight: 600;
     padding: 1.2rem;
     margin: 0.5rem;
-    transition: 0.5s;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     border: none;
     border-radius: 1rem;
     cursor: pointer;
     top: 42vh;
     right: 10vw;
-    animation: myZoomInAnimation 1s ease-out forwards;
-  }
-  
-  @keyframes myZoomInAnimation {
-      from {
-         transform: scale(0.8);
-         opacity: 0;
-      }
-      to {
-         transform: scale(1);
-         opacity: 1;
-      }
-     }
-  
-  #login-button:hover {
     background-color: rgb(22, 21, 21);
-    letter-spacing: 0.15em;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  }
+    transform: scale(1.1);
+}
