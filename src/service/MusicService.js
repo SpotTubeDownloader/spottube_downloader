@@ -1,6 +1,5 @@
 import axios from "axios";
 import { saveAs } from 'file-saver';
-import Player from "../components/player/Player";
 
 
 const api_url = process.env.REACT_APP_API_URL;
@@ -12,8 +11,6 @@ export async function getSongsList(token, songName){
         }
     });
 
-    console.log("[Inside GetHistory]",response);
-
     return response.data;
 }
 
@@ -23,7 +20,7 @@ export async function streamSong(token, songLink){
         const response = await axios.get(`${api_url}/user/song/streamSong/${link}`,{
             headers:{
                 authorization: `Bearer ${token}`,
-            }, responseType: 'arraybuffer'
+            }, responseType: 'blob'
 
         });
         return response;
@@ -64,7 +61,6 @@ export async function downloadSongByYoutubeLink(token, userSub, link, save=true)
             });
             // get the duration in MM:SS format if seconds are less than 10, add a 0 before the seconds
             const durationInMinutes = `${Math.floor(duration / 60)}:${Math.floor(duration % 60) < 10 ? `0${Math.floor(duration % 60)}` : Math.floor(duration % 60)}`;
-            console.log(durationInMinutes);
             return [songName, durationInMinutes];
         }
     }catch(error){

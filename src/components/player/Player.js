@@ -1,29 +1,18 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext} from "react";
 import "../../css/player.css";
 import { SongContext } from "../../context/SongContext";
 
-export default function Player({setPlayer}) {
-
+export default function Player() {
   const { 
-    songName, 
-    duration, 
-    thumbnail, 
-    artist, 
-    audioContext, 
-    playing, 
-    setPlaying, 
-    sourceNode, 
-    setSourceNode, 
-    audioBuffer,
-    currentTime, 
-    setCurrentTime,
-    seekSliderValue, 
-    setSeekSliderValue,
-    startTime, 
-    setStartTime,
-    animationFrameRef
+    audioRef,
+    isPlaying, setIsPlaying,
+    seekValue, setSeekValue,
+    thumbnail,
+    songName,
+    artist,
+    duration,
+    setPlayer
   } = useContext(SongContext);
-
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -31,146 +20,94 @@ export default function Player({setPlayer}) {
     return `${minutes}:${seconds}`;
   };
 
-  const togglePlayPause = () => {
-    if (audioContext && playing) {
-      audioContext.suspend().then(() => {
-        setPlaying(false);
-        cancelAnimationFrame(animationFrameRef.current);
-      });
-    } else if (audioContext && !playing) {
-      audioContext.resume().then(() => {
-        setPlaying(true);
-        requestAnimationFrame(updateTime);
-      });
-    }
-  };
+  const playAudio = () => {
+    audioRef.current.play();
+    setIsPlaying(true);
+};
 
-  const stopPlayback = () => {
-    if (audioContext && sourceNode) {
-      sourceNode.stop(0);
-      sourceNode.disconnect();
-      setSourceNode(null);
-      setPlaying(false);
-      setCurrentTime(0);
-      setSeekSliderValue(0);
-      cancelAnimationFrame(animationFrameRef.current);
-    }
-  };
+const pauseAudio = () => {
+    audioRef.current.pause();
+    setIsPlaying(false);
+};
 
-  const updateTime = () => {
-    console.log("ping");
-    if (playing && audioContext && sourceNode) {
-      console.log("pong")
-      const time = audioContext.currentTime - startTime;
-      setCurrentTime(time);
-      setSeekSliderValue(time);
-      console.log("[CurrentTime]: ",currentTime)
-      console.log("[time]: ", time)
+  const handleSeek = (event) => {
+    audioRef.current.currentTime = event.target.value ;
+    setSeekValue(event.target.value);
+};
 
-      if (currentTime >= convertDurationToSeconds(duration)) {
-        stopPlayback();
-        setPlayer(false);
-      } else {
-        animationFrameRef.current = requestAnimationFrame(updateTime);
-      }
-    }else{
-      setTimeout(()=>{animationFrameRef.current = requestAnimationFrame(updateTime);},500)
-    }
-  };
-
-  useEffect(() => {
-    if (playing) {
-      animationFrameRef.current = requestAnimationFrame(updateTime);
-    }
-    return () => {
-      cancelAnimationFrame(animationFrameRef.current);
-    };
-  }, [playing]);
-
-  const seekSong = (seekTo) => {
-    if (audioContext) {
-      if (sourceNode) {
-        sourceNode.stop(0);
-        sourceNode.disconnect();
-      }
-
-      const source = audioContext.createBufferSource();
-      source.buffer = audioBuffer;
-      source.connect(audioContext.destination);
-      setSourceNode(source);
-      source.start(0, seekTo);
-      setStartTime(audioContext.currentTime - seekTo);
-      setPlaying(true);
-      requestAnimationFrame(updateTime);
-    }
-  };
-
-  const handleSliderChange = (event) => {
-    event.stopPropagation();
-    cancelAnimationFrame(animationFrameRef.current);
-    setSeekSliderValue(event.target.value);
-    const seekTo = event.target.value;
-    setCurrentTime(seekTo);
-    seekSong(seekTo);
-  };
+  
 
   const convertDurationToSeconds = (duration) => {
+    if(duration ==='')
+      return 0;
     const parts = duration.split(':');
     const minutes = parseInt(parts[0], 10);
     const seconds = parseInt(parts[1], 10);
     return (minutes * 60) + seconds;
   };
 
-  let url = thumbnail;
+
+  const updateSeek = () => {
+    if(audioRef.current.currentTime === audioRef.current.duration){
+      setIsPlaying(false);
+      setPlayer(false);
+    }
+    const value = audioRef.current.currentTime;
+    setSeekValue(value);
+};
+
   return (
-    <div
-      className="player-content"
-      style={{
-        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 49%, rgba(0, 0, 0, 0.70) 100%), url(${url}) lightgray 50% / cover no-repeat`,
-      }}
-    >
-      <div className="songInfos">
-        <div>
-          <h1>{songName}</h1>
-        </div>
-        <div>
-          <h3>{artist}</h3>
-        </div>
-      </div>
-      <div className="control">
-        {!playing ? (
-          <div className="play-button" onClick={togglePlayPause}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-              <path
-                fill="#ffffff"
-                d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"
-              />
-            </svg>
+    <div className="player-container">
+      <audio ref={audioRef} onTimeUpdate={updateSeek} style={{ display: "none" }}/>
+      <div
+        className="player-content"
+        style={{
+          background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 49%, rgba(0, 0, 0, 0.70) 100%), url(${thumbnail}) lightgray 50% / cover no-repeat`,
+        }}
+      >
+        <div className="songInfos">
+          <div>
+            <h1>{songName}</h1>
           </div>
-        ) : (
-          <div className="play-button" onClick={togglePlayPause}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-              <path
-                fill="#ffffff"
-                d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"
-              />
-            </svg>
+          <div id="artist">
+            <h3>{artist}</h3>
           </div>
-        )}
-        <div id="track-slider-container">
-          <input
-            type="range"
-            id="seek-slider"
-            value={seekSliderValue}
-            max={convertDurationToSeconds(duration)}
-            onChange={handleSliderChange}
-          ></input>
-          <div id="track-times">
-            <div id="current-time" className="time">
-              {formatTime(currentTime)}
+        </div>
+        <div className="control">
+          {!isPlaying ? (
+            <div className="play-button" onClick={playAudio}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <path
+                  fill="#ffffff"
+                  d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"
+                />
+              </svg>
             </div>
-            <div id="duration" className="time">
-              {duration}
+          ) : (
+            <div className="play-button" onClick={pauseAudio}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path
+                  fill="#ffffff"
+                  d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"
+                />
+              </svg>
+            </div>
+          )}
+          <div id="track-slider-container">
+            <input
+              type="range"
+              id="seek-slider"
+              value={seekValue}
+              max={convertDurationToSeconds(duration)}
+              onChange={handleSeek}
+            ></input>
+            <div id="track-times">
+              <div id="current-time" className="time">
+                {formatTime(seekValue)}
+              </div>
+              <div id="duration" className="time">
+                {duration}
+              </div>
             </div>
           </div>
         </div>
@@ -178,5 +115,3 @@ export default function Player({setPlayer}) {
     </div>
   );
 }
-
-

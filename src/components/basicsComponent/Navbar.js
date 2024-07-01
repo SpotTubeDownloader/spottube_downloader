@@ -4,24 +4,21 @@ import DialogInfo from "../Info/DialogInfo.js";
 import DialogMusic from "../Music/DialogMusic.js";
 import DialogFavorites from "../Favorites/DialogFavorites.js";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useNavigate } from "react-router-dom";
 import DialogHistory from "../History/DialogHistory.js";
 import { getHistory } from "../../service/HistoryService.js";
 import { getFavorite } from "../../service/FavoriteService.js";
 import "../../css/navbar.css";
 import "../../css/dialogGeneral.css";
 
-//take api url from .env file
-const apiUrl = process.env.REACT_APP_API_URL;
 
-export default function Navbar({ token, setPlayer}) {
+
+export default function Navbar({token}) {
   const [dialogVisible, setDialogVisible] = useState(false);
   const [dialogType, setDialogType] = useState("");
   const [dialogPosition, setDialogPosition] = useState("center");
   const [history, setHistory] = useState([]);
   const [favorite, setFavorite] = useState([]);
   const { logout, user } = useAuth0();
-  const navigate = useNavigate();
 
   const items = [
     {
@@ -41,7 +38,6 @@ export default function Navbar({ token, setPlayer}) {
         setDialogType("favorites");
         try{
             getFavorite(token, user.sub).then(data=>{
-                console.log(data);
                 setFavorite(data);
                 setDialogVisible(true);
             }).catch(err=>{
@@ -60,7 +56,6 @@ export default function Navbar({ token, setPlayer}) {
         setDialogType("history");
         try {
           getHistory(token, user.sub).then(data=>{
-            console.log(data);
             setHistory(data);
             setDialogVisible(true);
           }).catch(err=>{
@@ -84,8 +79,11 @@ export default function Navbar({ token, setPlayer}) {
       label: 'Logout',
       icon: "pi pi-sign-out",
       command: () => {
-        logout();
-        navigate("/");
+        logout({
+          logoutParams: {
+            returnTo: window.location.origin,
+          },
+        });
       },
     },
   ];
@@ -93,7 +91,7 @@ export default function Navbar({ token, setPlayer}) {
   const start = user ? (
     <img alt="User" src={user.picture} className="mr-2"></img>
   ) : (
-    <img alt="logo" src="/logo.png" height="100" className="mr-2"></img>
+    <img alt="logo" src="/public/logo2.png" height="100" className="mr-2"></img>
   );
 
   return (
@@ -105,6 +103,7 @@ export default function Navbar({ token, setPlayer}) {
           position={dialogPosition}
           onHide={() => setDialogVisible(false)}
           token={token}
+          setDialogVisible={setDialogVisible}
         />
       )}
       {dialogVisible && dialogType === "favorites" && (
@@ -114,7 +113,6 @@ export default function Navbar({ token, setPlayer}) {
           onHide={() => setDialogVisible(false)}
           favorite={favorite}
           token={token}
-          setPlayer={setPlayer}
           setDialogVisible={setDialogVisible}
         />
       )}
@@ -125,6 +123,7 @@ export default function Navbar({ token, setPlayer}) {
           onHide={() => setDialogVisible(false)}
           history={history}
           token={token}
+          setDialogVisible={setDialogVisible}
         />
       )}
       {dialogVisible && dialogType === "info" && (
