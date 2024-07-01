@@ -50,10 +50,12 @@ const pauseAudio = () => {
   const updateSeek = () => {
     if(audioRef.current.currentTime === audioRef.current.duration){
       setIsPlaying(false);
-      setPlayer(false);
+      setSeekValue(0);
+    }else{
+      const value = audioRef.current.currentTime;
+      setSeekValue(value);
     }
-    const value = audioRef.current.currentTime;
-    setSeekValue(value);
+
 };
 
   return (
