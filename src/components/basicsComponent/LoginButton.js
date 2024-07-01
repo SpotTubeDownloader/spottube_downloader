@@ -4,10 +4,17 @@ import '../../css/login.css';
 
 
 function LoginButton() {
-    const {loginWithPopup} = useAuth0();
+    const {loginWithRedirect} = useAuth0();
 
+    const handleLogin = async () => {
+        await loginWithRedirect({
+          appState: {
+            returnTo: "/home",
+          },
+        });
+      };
     return (   
-        <button id="login-button" onClick={() => loginWithPopup()}>Accedi</button>
+        <button id="login-button" onClick={handleLogin}>Accedi</button>
     );
   }
   

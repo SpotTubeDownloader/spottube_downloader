@@ -11,14 +11,11 @@ export async function getHistory(token, userSub){
         }
     });
 
-    console.log("[Inside GetHistory]",response);
 
     return response.data;
 }
 
 export async function deleteElementinHistoryBySongId(token, userSub, songId){
-    console.log("[Inside deleteElementinHistoryBySongId]");
-    console.log(songId)
     const response = await axios.post(`${api_url}/user/history/deleteElementinHistoryBySongId`,
     {
         songId: songId,
@@ -29,7 +26,6 @@ export async function deleteElementinHistoryBySongId(token, userSub, songId){
             authorization: `Bearer ${token}`,
         }
     });
-    console.log("[Inside deleteElementinHistoryBySongId]",response.data);
     return response.data;
 }
 
