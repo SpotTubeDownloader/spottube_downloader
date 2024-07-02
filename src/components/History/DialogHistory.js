@@ -5,8 +5,7 @@ import "../../css/dialogGeneral.css";
 import "../../css/scroller.css";
 
 
-export default function DialogHistory({ visible, position, onHide, history , token, setDialogVisible}) {
-    console.log(history);
+export default function DialogHistory({ visible, onHide, history , token, setDialogVisible, position="center"}) {
   return (
     <div className="card">
       <Dialog

@@ -33,7 +33,9 @@ export default function SongScroller({
     setSongName,
     setArtist,
     setDuration,
-    setPlayer
+    setPlayer,
+    setAudioData,
+    setLink
   } = useContext(SongContext); 
 
   const deleteCallback = async (id) => {
@@ -85,6 +87,8 @@ export default function SongScroller({
         const response = await streamSong(token, link);
         const blob = new Blob([response.data], { type: 'audio/mpeg' });
         const url = URL.createObjectURL(blob);
+        setAudioData(blob);
+        setLink(link);
         setSongName(decodeURIComponent(response.headers["songname"]));
         setArtist(decodeURIComponent(response.headers["artist"]));
         setDuration(decodeURIComponent(response.headers["duration"]));

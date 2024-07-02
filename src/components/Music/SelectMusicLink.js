@@ -10,7 +10,6 @@ import '../../css/scroller.css';
 
 export default function SelectMusicLink({ token }) {
     const {user} = useAuth0();
-    const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(null);
     
     const callbackButton = async (token, value) => {
@@ -31,7 +30,7 @@ export default function SelectMusicLink({ token }) {
                 </div>
             )}
             <Panel header="Scarica attraverso il link" toggleable collapsed={true}>
-                {!visible && <SearchLabel token={token} buttonIcon={"download"} callbackButton={callbackButton} />}
+                <SearchLabel token={token} buttonIcon={"download"} callbackButton={callbackButton} />
             </Panel>
         </>
     )

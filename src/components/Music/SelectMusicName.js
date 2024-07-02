@@ -17,6 +17,7 @@ export default function SelectMusicName({ token, setDialogVisible}) {
     
     const callbackButton = async (token, value) => {
         setLoading(true);
+        setVisible(false);
         try {
             getSongsList(token, value).then((data) => {
                 setVisible(true);
@@ -40,7 +41,7 @@ export default function SelectMusicName({ token, setDialogVisible}) {
                 </div>
             }
             <Panel header="Scarica attraverso il nome" toggleable collapsed={true}>
-                {!visible && <SearchLabel token={token} buttonIcon={"search"} callbackButton={callbackButton} />}
+                <SearchLabel token={token} buttonIcon={"search"} callbackButton={callbackButton} />
                 {visible && songs !== null && <SongScroller songs={songs} token={token} setDialogVisible={setDialogVisible}/>}
             </Panel>
         </>
