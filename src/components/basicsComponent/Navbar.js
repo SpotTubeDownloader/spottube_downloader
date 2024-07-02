@@ -16,7 +16,6 @@ import { SongContext } from "../../context/SongContext.js";
 export default function Navbar({token}) {
   const {dialogVisible, setDialogVisible} = useContext(SongContext);
   const [dialogType, setDialogType] = useState("");
-  const [dialogPosition, setDialogPosition] = useState("center");
   const [history, setHistory] = useState([]);
   const [favorite, setFavorite] = useState([]);
   const { logout, user } = useAuth0();
@@ -26,7 +25,6 @@ export default function Navbar({token}) {
       label: 'Musica',
       icon: "pi pi-headphones",
       command: () => {
-        setDialogPosition("center");
         setDialogType("music");
         setDialogVisible(true);
       },
@@ -35,7 +33,6 @@ export default function Navbar({token}) {
       label: 'Preferiti',
       icon: "pi pi-star",
       command: () => {
-        setDialogPosition("center");
         setDialogType("favorites");
         try{
             getFavorite(token, user.sub).then(data=>{
@@ -53,7 +50,6 @@ export default function Navbar({token}) {
       label: 'Cronologia',
       icon: "pi pi-history",
       command: () => {
-        setDialogPosition("center");
         setDialogType("history");
         try {
           getHistory(token, user.sub).then(data=>{
@@ -71,7 +67,6 @@ export default function Navbar({token}) {
       label: 'Info',
       icon: "pi pi-info-circle",
       command: () => {
-        setDialogPosition("center");
         setDialogType("info");
         setDialogVisible(true);
       },
@@ -101,7 +96,6 @@ export default function Navbar({token}) {
       {dialogVisible && dialogType === "music" && (
         <DialogMusic
           visible={dialogVisible}
-          position={dialogPosition}
           onHide={() => setDialogVisible(false)}
           token={token}
           setDialogVisible={setDialogVisible}
@@ -110,7 +104,6 @@ export default function Navbar({token}) {
       {dialogVisible && dialogType === "favorites" && (
         <DialogFavorites
           visible={dialogVisible}
-          position={dialogPosition}
           onHide={() => setDialogVisible(false)}
           favorite={favorite}
           token={token}
@@ -120,7 +113,6 @@ export default function Navbar({token}) {
       {dialogVisible && dialogType === "history" &&(
         <DialogHistory
           visible={dialogVisible}
-          position={dialogPosition}
           onHide={() => setDialogVisible(false)}
           history={history}
           token={token}
@@ -130,7 +122,6 @@ export default function Navbar({token}) {
       {dialogVisible && dialogType === "info" && (
         <DialogInfo
           visible={dialogVisible}
-          position={dialogPosition}
           onHide={() => setDialogVisible(false)}
           token={token}
         />
