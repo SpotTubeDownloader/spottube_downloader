@@ -58,6 +58,23 @@
       color: #fff;
     }
   }
+
+  .download-button{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    & svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: #fff;
+    }
+  }
+  .download-button:hover{
+    cursor: pointer;
+  }
+  .play-button:hover{
+    cursor:pointer;
+  }
   #track-slider-container {
     display: flex;
     flex-direction: column;
@@ -137,6 +154,22 @@
       }
     }
   }
+  .download-button{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    & svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: #fff;
+    }
+  }
+  .download-button:hover{
+    cursor: pointer;
+  }
+  .play-button:hover{
+    cursor:pointer;
+  }
 }
 
 
@@ -202,6 +235,22 @@
       height: 1rem;
       color: #fff;
     }
+  }
+  .download-button{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    & svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: #fff;
+    }
+  }
+  .download-button:hover{
+    cursor: pointer;
+  }
+  .play-button:hover{
+    cursor:pointer;
   }
   #track-slider-container {
     display: flex;

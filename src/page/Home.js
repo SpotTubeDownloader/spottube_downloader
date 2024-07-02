@@ -42,6 +42,7 @@ function Home() {
               console.log(response.data);
             })
             .catch((error) => {
+              console.log(error);
               if (error.code !== "ECONNABORTED")
                 logout({ returnTo: window.location.origin });
             });
