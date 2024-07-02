@@ -1,6 +1,6 @@
 import React from "react";
 import { Dialog } from 'primereact/dialog';
-import RatingTest from "./RatingTest";
+import RatingForm from "./Rating";
 import '../../css/info.css';
 
 
@@ -22,7 +22,7 @@ export default function DialogInfo({ visible, position, onHide, token }) {
                     <br></br>
                     <br></br>
                     Valuta il nostro servizio se ti va: 
-                    <RatingTest token={token}/>
+                    <RatingForm token={token}/>
                 </p>
             </Dialog>
         </div>
