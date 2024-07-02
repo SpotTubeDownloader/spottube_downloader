@@ -29,5 +29,19 @@ export async function deleteElementinHistoryBySongId(token, userSub, songId){
     return response.data;
 }
 
+export async function addHistoryByUserSub(token, userSub, link){
+    const response = await axios.post(`${api_url}/user/history/addHistoryByUserSub`,
+    {
+        link: link,
+        userSub: userSub
+    }
+    ,{
+        headers:{
+            authorization: `Bearer ${token}`,
+        }
+    });
+    return response.data;
+}
+
 
 

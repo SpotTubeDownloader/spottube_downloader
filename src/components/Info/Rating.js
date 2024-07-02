@@ -18,7 +18,6 @@ export default function RatingForm({ token }) {
     },[]);
 
     const updateRating = async (value) => {
-        console.log("updateRating");
         await updateRatingByUserSub(token, user.sub, value);
         setValue(value);
     }

@@ -13,6 +13,8 @@ export const SongProvider = ({ children }) => {
   const [duration, setDuration] = useState('');
   const [player, setPlayer] = useState(false);
   const [dialogVisible, setDialogVisible] = useState(false);
+  const [audioData, setAudioData] = useState(null);
+  const [link, setLink] = useState('');
 
 
 
@@ -27,7 +29,9 @@ export const SongProvider = ({ children }) => {
       artist, setArtist,
       duration, setDuration,
       player, setPlayer,
-      dialogVisible, setDialogVisible
+      dialogVisible, setDialogVisible,
+      audioData, setAudioData,
+      link, setLink
     }}>
       {children}
     </SongContext.Provider>
