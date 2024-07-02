@@ -35,6 +35,7 @@ function Home() {
               {
                 headers: {
                   authorization: `Bearer ${token}`,
+                  Access-Control-Allow-Origin: *
                 },
               }
             )
