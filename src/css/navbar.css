@@ -145,6 +145,8 @@
     margin-bottom: 1vh;
     margin-right: 2vw;
     margin-left: 2vw;
+    max-width: 6rem;
+    max-height: 6rem;
     height: fit-content;
   }
   .mr-2 {
