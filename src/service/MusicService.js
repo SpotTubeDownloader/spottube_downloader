@@ -44,9 +44,9 @@ export async function downloadSongByYoutubeLink(token, userSub, link) {
         const songNameCompressed = response.headers['songname'];
         const songName = decodeURIComponent(songNameCompressed)
         
-            const blob = new Blob([response.data], { type: 'audio/mpeg' });
-            saveAs(blob, `${decodeURIComponent(songName)}.mp3`);
-            return true;
+        const blob = new Blob([response.data], { type: 'audio/mpeg' });
+        saveAs(blob, `${decodeURIComponent(songName)}.mp3`);
+        return true;
     }catch(error){
         throw new Error(error);
     }

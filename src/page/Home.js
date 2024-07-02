@@ -54,7 +54,7 @@ function Home() {
         </div>
         {player && (
           <div className='player-div'>
-            <Player/>
+            <Player token={token}/>
           </div>
         )}
       </div>
