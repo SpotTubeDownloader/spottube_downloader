@@ -1,19 +1,5 @@
-.Login-header {
-    background-image: url("/public/sfondo.jpg");
-    background-color: black;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: row;
-    align-items: right;
-    justify-content: right;
-    background-size: 210vh;
-    background-position: top center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-  }
-  
+@media screen and (min-width: 960px) {
   #login-button {
-    position: absolute;
     background-color: rgb(0, 0, 0);
     color: whitesmoke;
     text-decoration: none;
@@ -23,17 +9,237 @@
     font-weight: 600;
     padding: 1.2rem;
     margin: 0.5rem;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease,
+      box-shadow 0.3s ease;
     border: none;
     border-radius: 1rem;
     cursor: pointer;
     top: 42vh;
     right: 10vw;
+  }
+  #login-button:hover{
+    background-color: rgb(22, 21, 21);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+  }
+  .Login-header {
+    display: flex;
+    justify-content: right;
+
+    margin-top: 10rem;
+    margin-right: 10rem;
+  }
+  .box {
+    background-color: grey;
+    box-shadow: 5px 8px;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 50%;
+    height: fit-content;
+    width: fit-content;
+    & h2 {
+      color: whitesmoke;
+    }
+  }
+  .InfoBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    & > h1 {
+      font-family: Inter;
+      color: whitesmoke;
+    }
+  }
+  .description {
+    & > ul > li {
+      font-family: Inter;
+      color: whitesmoke;
+    }
+    & > ul > li > p {
+      font-size: large;
+      font-weight: 400;
+      color: whitesmoke;
+    }
+  }
+  .LogoImage {
+    width: fit-content;
+    height: fit-content;
+    max-width: 5rem;
+    max-height: 5rem;
+  }
+  .login {
+    display: flex;
+    align-items: center;
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 959px){
+  .login {
+    display: flex;
+    align-items: center;
+  }
+  body{
+    display: flex;
+    align-items: center;
+  }
+  .box {
+    background-color: grey;
+    box-shadow: 5px 8px;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 50%;
+    min-width: fit-content;
+    height: fit-content;
+    width: fit-content;
+    & h1 {
+      color: whitesmoke;
+    }
+  }
+  .description {
+    & > h2{
+      color: whitesmoke;
+    }
+    & > ul > li {
+      font-family: Inter;
+      color: whitesmoke;
+    }
+    & > ul > li > p {
+      font-size: large;
+      font-weight: 400;
+      color: whitesmoke;
+    }
+  }
+  .LogoImage {
+    width: fit-content;
+    height: fit-content;
+    max-width: 5rem;
+    max-height: 5rem;
+  }
+
+  #login-button {
+    background-color: rgb(0, 0, 0);
+    color: whitesmoke;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    padding: 1.2rem;
+    margin: 0.5rem;
+    transition: transform 0.3s ease, background-color 0.3s ease,
+      box-shadow 0.3s ease;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+
+  #login-button:hover {
+    background-color: rgb(22, 21, 21);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+  }
+  .InfoBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    & > h1 {
+      font-family: Inter;
+      font-size: medium;
+      color: whitesmoke;
+    }
+    > & h1:hover {
+      cursor: none;
+    }
+  }
 }
 
+@media screen and (max-width: 500px) {
+  .login {
+    display: flex;
+    align-items: center;
+  }
+  body{
+    display: flex;
+    align-items: center;
+  }
+  .box {
+    background-color: grey;
+    box-shadow: 5px 8px;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 50%;
+    min-width: fit-content;
+    height: fit-content;
+    width: fit-content;
+    & h1 {
+      color: whitesmoke;
+    }
+  }
+  .description {
+    & > h2 {
+      color: whitesmoke;
+      font-size: small;
+    }
+    & > ul {
+      display: none;
+    }
+  }
+  .LogoImage {
+    width: fit-content;
+    height: fit-content;
+    max-width: 5rem;
+    max-height: 5rem;
+  }
 
-#login-button:hover {
-  background-color: rgb(22, 21, 21);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  transform: scale(1.1);
+  #login-button {
+    background-color: rgb(0, 0, 0);
+    color: whitesmoke;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    padding: 1.2rem;
+    margin: 0.5rem;
+    transition: transform 0.3s ease, background-color 0.3s ease,
+      box-shadow 0.3s ease;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+
+  #login-button:hover {
+    background-color: rgb(22, 21, 21);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+  }
+  .InfoBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    & > h1 {
+      font-family: Inter;
+      font-size: medium;
+      color: whitesmoke;
+    }
+    > & h1:hover {
+      cursor: none;
+    }
+  }
 }

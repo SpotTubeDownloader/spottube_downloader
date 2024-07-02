@@ -87,7 +87,7 @@ export default function Navbar({token}) {
   const start = user ? (
     <img alt="User" src={user.picture} className="mr-2"></img>
   ) : (
-    <img alt="logo" src="/public/logo2.png" height="100" className="mr-2"></img>
+    <img alt="logo" src="/logo2.png" className="mr-2"></img>
   );
 
   return (
