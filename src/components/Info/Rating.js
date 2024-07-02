@@ -6,20 +6,18 @@ import '../../css/info.css';
 
 
 
-export default function RatingTest({ token }) {
+export default function RatingForm({ token }) {
     const [value, setValue] = useState(null);
     const { user } = useAuth0();
 
 
     useEffect(() => {
-        console.log("RatingTest");
         getRatingByUserSub(token, user.sub).then((data) => {
             setValue(data.rating);
         });
     },[]);
 
     const updateRating = async (value) => {
-        console.log("updateRating");
         await updateRatingByUserSub(token, user.sub, value);
         setValue(value);
     }

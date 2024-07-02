@@ -1,8 +1,13 @@
-import React, { useContext} from "react";
+import React, { useContext, useEffect, useCallback} from "react";
 import "../../css/player.css";
 import { SongContext } from "../../context/SongContext";
+import { saveAs } from 'file-saver';
+import { useAuth0 } from "@auth0/auth0-react";
+import {addHistoryByUserSub} from "../../service/HistoryService";
 
-export default function Player() {
+
+
+export default function Player({token}) {
   const { 
     audioRef,
     isPlaying, setIsPlaying,
@@ -11,8 +16,13 @@ export default function Player() {
     songName,
     artist,
     duration,
-    setPlayer
+    setPlayer,
+    dialogVisible,
+    audioData,
+    link
   } = useContext(SongContext);
+  const { user } = useAuth0();
+
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -29,6 +39,58 @@ const pauseAudio = () => {
     audioRef.current.pause();
     setIsPlaying(false);
 };
+
+const downloadAudio = () => {
+  if(audioData === null){
+    return;
+  }
+  addHistoryByUserSub(token, user.sub, link).then(()=>{
+    saveAs(audioData, `${songName}.mp3`);
+  });
+};
+
+const handleKeyPress = useCallback((event) => {
+  if(!dialogVisible){
+    if (event.code === 'Space') {
+      event.preventDefault();
+      if (isPlaying) {
+        pauseAudio();
+      } else {
+        playAudio();
+      }
+    }
+  
+    if (event.code === 'ArrowRight') {
+      event.preventDefault();
+      if (audioRef.current.currentTime + 5 > audioRef.current.duration) {
+        audioRef.current.currentTime = audioRef.current.duration;
+      }else{
+        audioRef.current.currentTime += 5;
+      }
+    }
+  
+    if (event.code === 'ArrowLeft') {
+      event.preventDefault();
+      if (audioRef.current.currentTime - 5 < 0) {
+        audioRef.current.currentTime = 0;
+      }else{
+        audioRef.current.currentTime -= 5;
+      }
+    }
+    if (event.code === 'Escape') {
+      event.preventDefault();
+      setPlayer(false);
+    }
+  }
+  
+}, [isPlaying, dialogVisible]);
+
+useEffect(() => {
+  window.addEventListener('keydown', handleKeyPress);
+  return () => {
+    window.removeEventListener('keydown', handleKeyPress);
+  };
+}, [handleKeyPress]);
 
   const handleSeek = (event) => {
     audioRef.current.currentTime = event.target.value ;
@@ -50,10 +112,12 @@ const pauseAudio = () => {
   const updateSeek = () => {
     if(audioRef.current.currentTime === audioRef.current.duration){
       setIsPlaying(false);
-      setPlayer(false);
+      setSeekValue(0);
+    }else{
+      const value = audioRef.current.currentTime;
+      setSeekValue(value);
     }
-    const value = audioRef.current.currentTime;
-    setSeekValue(value);
+
 };
 
   return (
@@ -93,6 +157,11 @@ const pauseAudio = () => {
               </svg>
             </div>
           )}
+          <div className="play-button" onClick={downloadAudio}>
+            <svg width="1000px" height="1000px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.163 2.819C9 3.139 9 3.559 9 4.4V11H7.803c-.883 0-1.325 0-1.534.176a.75.75 0 0 0-.266.62c.017.274.322.593.931 1.232l4.198 4.401c.302.318.453.476.63.535a.749.749 0 0 0 .476 0c.177-.059.328-.217.63-.535l4.198-4.4c.61-.64.914-.96.93-1.233a.75.75 0 0 0-.265-.62C17.522 11 17.081 11 16.197 11H15V4.4c0-.84 0-1.26-.164-1.581a1.5 1.5 0 0 0-.655-.656C13.861 2 13.441 2 12.6 2h-1.2c-.84 0-1.26 0-1.581.163a1.5 1.5 0 0 0-.656.656zM5 21a1 1 0 0 0 1 1h12a1 1 0 1 0 0-2H6a1 1 0 0 0-1 1z" fill="#ffffff"/>
+            </svg>
+          </div>
           <div id="track-slider-container">
             <input
               type="range"

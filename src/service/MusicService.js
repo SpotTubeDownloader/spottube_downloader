@@ -30,7 +30,7 @@ export async function streamSong(token, songLink){
 }
 
 
-export async function downloadSongByYoutubeLink(token, userSub, link, save=true) {
+export async function downloadSongByYoutubeLink(token, userSub, link) {
     try{
         const response = await axios.post(`${api_url}/user/song/downloadSongByLink`,{
             songLink: link,
@@ -43,26 +43,10 @@ export async function downloadSongByYoutubeLink(token, userSub, link, save=true)
         });
         const songNameCompressed = response.headers['songname'];
         const songName = decodeURIComponent(songNameCompressed)
-        if (save){
-            const blob = new Blob([response.data], { type: 'audio/mpeg' });
-            saveAs(blob, `${decodeURIComponent(songName)}.mp3`);
-            return true;
-        }
-        else{
-            // save the song in the browser storage
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const audio = new Audio(url);
-            audio.play();
-            // get the length of the song
-            const duration = await new Promise((resolve) => {
-                audio.onloadedmetadata = () => {
-                    resolve(audio.duration);
-                };
-            });
-            // get the duration in MM:SS format if seconds are less than 10, add a 0 before the seconds
-            const durationInMinutes = `${Math.floor(duration / 60)}:${Math.floor(duration % 60) < 10 ? `0${Math.floor(duration % 60)}` : Math.floor(duration % 60)}`;
-            return [songName, durationInMinutes];
-        }
+        
+        const blob = new Blob([response.data], { type: 'audio/mpeg' });
+        saveAs(blob, `${decodeURIComponent(songName)}.mp3`);
+        return true;
     }catch(error){
         throw new Error(error);
     }
