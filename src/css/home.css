@@ -1,6 +1,42 @@
 body {
-    background-image: url("/public/sfondo.jpg");
-    min-height: 100vh;
-    background-size:cover;
-    overflow: hidden;
+  background-image: url("/public/sfondo.jpg");
+  min-height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+}
+@media screen and (min-width: 960px) {
+  .InfoBoxHome {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    & > h1 {
+      font-family: Inter;
+      font-size: medium;
+      color: whitesmoke;
+    }
+    > & h1:hover {
+      cursor: none;
+    }
   }
+  .LogoImage {
+    width: fit-content;
+    height: fit-content;
+    max-width: 5rem;
+    max-height: 5rem;
+  }  
+}
+@media screen and (max-width: 960px){
+  .InfoBoxHome{
+    display: none;
+  }
+  .Home{
+    position: absolute;
+    top: 0;
+  }
+}
+
