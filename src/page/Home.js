@@ -35,7 +35,6 @@ function Home() {
               {
                 withCredentials: true,
                 headers: {
-                  'Access-Control-Allow-Origin': '*', 
                   authorization: `Bearer ${token}`,     
                 },
               }
@@ -45,7 +44,7 @@ function Home() {
             })
             .catch((error) => {
               console.log(error);
-              if (error.code !== "ECONNABORTED")
+              if (error.code !== "ECONNABORTED" || error.code!== "ERR_NETWORK")
                 logout({ returnTo: window.location.origin });
             });
         });
