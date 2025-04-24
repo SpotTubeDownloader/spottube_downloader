@@ -33,7 +33,7 @@ function Home() {
                 userSub: user.sub,
               },
               {
-                withCredentials: true,
+                withCredentials: false,
                 headers: {
                   authorization: `Bearer ${token}`,     
                 },
